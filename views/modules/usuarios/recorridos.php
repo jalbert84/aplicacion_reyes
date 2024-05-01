@@ -11,13 +11,13 @@ if(!$_SESSION["validar"]) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Reyes Magos - Recorridos</title>
+    <title>Recorridos</title>
 
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -51,12 +51,12 @@ if(!$_SESSION["validar"]) {
                 <h1 class="text-center">Recorridos</h1>
                 <div class="text-center">
                     <!-- Botones de recorridos -->
-                    <a href="../mapas/mapa-azul.php" class="btn btn-lg btn-primary">Mapa Azul</a>
-                    <a href="../mapas/mapa-rojo.php" class="btn btn-lg btn-danger">Mapa Rojo</a>
-                    <a href="../mapas/mapa-verde.php" class="btn btn-lg btn-success">Mapa Verde</a>
-                    <a href="../mapas/mapa-amarillo.php" class="btn btn-lg btn-warning">Mapa Amarillo</a>
-                    <a href="../mapas/mapa-gris.php" class="btn btn-lg btn-default">Mapa Gris</a>
-                    <a href="../mapas/mapa-morado.php" class="btn btn-lg btn-purple">Mapa Morado</a>
+                    <a href="../mapas/mapa-gris.php" class="btn btn-lg btn-default">Rei 1</a>
+                    <a href="../mapas/mapa-rojo.php" class="btn btn-lg btn-danger">Rei 1(bis)</a>
+                    <a href="../mapas/mapa-amarillo.php" class="btn btn-lg btn-warning">Rei 2</a>
+                    <a href="../mapas/mapa-verde.php" class="btn btn-lg btn-success">Rei 2(bis)</a>                
+                    <a href="../mapas/mapa-azul.php" class="btn btn-lg btn-primary">Rei 3</a>
+                    <a href="../mapas/mapa-morado.php" class="btn btn-lg btn-purple">Rei 3(bis)</a>
                 </div>
             </div>
         </div>

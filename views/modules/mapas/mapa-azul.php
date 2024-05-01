@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +61,7 @@
     <!-- Contenedor principal del mapa -->
     <div id="map-container">
         <!-- Imagen del mapa azul -->
-        <img id="map-image" src="mapa-prueba.jpg" alt="Mapa Azul">
+        <img id="map-image" src="mapa_rei_blau.jpg" alt="Mapa Azul">
     </div>
 
     <script>

@@ -1,3 +1,19 @@
+<script>
+    // Función para mostrar mensaje de alerta
+    function showAlert(message) {
+        alert(message);
+    }
+
+    // Función para mostrar mensaje de alerta y redirigir
+    function showAlertAndRedirect(message, url) {
+        alert(message);
+        window.location.href = url;
+    }
+</script>
+
+
+
+
 <?php
 // Lista de calles de Alfara del Patriarca
 $calles = [
@@ -49,23 +65,34 @@ if(!$_SESSION["validar"]) {
     exit();
 }
 
-// Verificar si se envió el formulario de modificación
+
+/// Verificar si se envió el formulario de modificación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si se recibió el nombre de usuario y los nuevos datos
-    if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"])) {
-        // Obtener los datos del formulario
-        $usuario = $_POST["nombreModificacion"];
-        $nuevaCalle = $_POST["calleModificacion"];
-        $nuevoNombre = $_POST["nuevoNombre"];
-        $nuevoNumero = $_POST["nuevoNumero"];
-        $nuevosRegalos = $_POST["nuevosRegalos"];
-        
-        // Llamar al método del controlador para modificar los datos del usuario
-        require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
-        $controlador = new UsuariosController();
-        $controlador->modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos);
-    }
+    // Agregar alerta de JavaScript para verificar si se envió el formulario
+    echo "<script>showAlert('Se envió el formulario de modificación');</script>";
+// Verificar si se recibió el nombre de usuario y los nuevos datos
+if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) && isset($_POST["nuevoNombre"]) && isset($_POST["nuevoNumero"]) && isset($_POST["nuevosRegalos"])) {
+    // Obtener los datos del formulario
+    $usuario = $_POST["nombreModificacion"]; // Cambiar aquí
+    $calle = $_POST["calleModificacion"];
+    $nuevoNombre = $_POST["nuevoNombre"];
+    $nuevoNumero = $_POST["nuevoNumero"];
+    $nuevosRegalos = $_POST["nuevosRegalos"];
+
+    // Llamar al método del controlador para modificar los datos del usuario
+    require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
+    $controlador = new UsuariosController();
+    $resultado = $controlador->modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos);
+
+    // Mostrar mensaje de alerta con el resultado
+    echo "<script>showAlert('$resultado');</script>";
+} else {
+    // Si faltan campos, muestra un mensaje de error
+    echo '<script>showAlert("Error! Faltan campos obligatorios en el formulario.");</script>';
 }
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Reyes Magos - Modificar Usuario</title>
+    <title>Modificar Usuario</title>
 
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -117,18 +144,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form role="form" method="post">
     <div class="form-group">
         <label for="inputUsuario">Nombre de Usuario</label>
-        <input type="text" name="usuarioModificacion" class="form-control" placeholder="Ingrese el nombre de usuario a modificar" required>
+        <input type="text" name="nombreModificacion" class="form-control" placeholder="Ingrese el nombre de usuario a modificar" required>
     </div>
 
     <div class="form-group">
                         <label for="inputCalle">Calle</label>
+
                         <!-- Lista desplegable para seleccionar la calle -->
-                        <select name="nuevaCalle" class="form-control" required>
-                            <option value="">Seleccione una calle</option>
-                            <?php foreach ($calles as $calle) { ?>
-                                <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
-                            <?php } ?>
+                        <<select name="calleModificacion" class="form-control" required>
+                        <option value="">Seleccione una calle</option>
+                        <?php foreach ($calles as $calle) { ?>
+                        <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
+                        <?php } ?>
                         </select>
+
                     </div>
     <!-- Aquí deberías agregar los campos que permitan modificar los datos del usuario -->
     <div class="form-group">

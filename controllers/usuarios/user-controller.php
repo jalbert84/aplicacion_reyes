@@ -98,26 +98,28 @@ public function buscarUsuarioController($nombre) {
 }
 
 public function modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos) {
-    // Verificar que los datos recibidos sean válidos
-    if ($usuario !== "" && $calle !== ""&& $nuevoNombre !== "" && $nuevoNumero !== "" && $nuevosRegalos !== "") {
-        // Normalizar el nombre de la calle para usarlo como nombre de tabla
-        $tabla = strtolower(str_replace(" ", "_", $calle));
-        
-        // Realizar la modificación en la base de datos
-        $query = "UPDATE $tabla SET nombre = :nuevoNombre, numero = :nuevoNumero, regalos = :nuevosRegalos WHERE nombre = :usuario";
-        $db = Conexion::conectar();
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':nuevoNombre', $nuevoNombre);
-        $stmt->bindParam(':nuevoNumero', $nuevoNumero);
-        $stmt->bindParam(':nuevosRegalos', $nuevosRegalos);
-        $stmt->bindParam(':usuario', $usuario);
-        $stmt->execute();
+    try {
+        // Verificar que los datos recibidos sean válidos
+        if ($usuario !== "" && $calle !== "" && $nuevoNombre !== "" && $nuevoNumero !== "" && $nuevosRegalos !== "") {
+            // Realizar la modificación en la base de datos
+            $query = "UPDATE $calle SET nombre = :nuevoNombre, numero = :nuevoNumero, regalos = :nuevosRegalos WHERE nombre = :usuario";
+            $db = Conexion::conectar();
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':nuevoNombre', $nuevoNombre);
+            $stmt->bindParam(':nuevoNumero', $nuevoNumero);
+            $stmt->bindParam(':nuevosRegalos', $nuevosRegalos);
+            $stmt->bindParam(':usuario', $usuario);
+            $stmt->execute();
 
-        echo "Usuario modificado correctamente.";
-    } else {
-        echo "No se recibieron todos los datos necesarios para modificar al usuario.";
+            return "Usuario modificado correctamente.";
+        } else {
+            return "No se recibieron todos los datos necesarios para modificar al usuario.";
+        }
+    } catch (PDOException $e) {
+        return "Error al modificar al usuario: " . $e->getMessage();
     }
 }
+
 
 
     

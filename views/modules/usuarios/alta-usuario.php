@@ -49,32 +49,24 @@ if(!$_SESSION["validar"]) {
     exit();
 }
 
-// Verificar si se ha enviado el formulario
+// Verificar si se envió el formulario de modificación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si los campos requeridos están presentes en $_POST
-    if(isset($_POST["nombreRegistro"]) && isset($_POST["calleRegistro"]) && isset($_POST["numeroRegistro"]) && isset($_POST["regalosRegistro"])) {
-        // Capturar los datos del formulario
-        $datos = array(
-            "nombre" => $_POST["nombreRegistro"],
-            "calle" => $_POST["calleRegistro"],
-            "numero" => $_POST["numeroRegistro"],
-            "regalos" => $_POST["regalosRegistro"]
-            // Agrega aquí más campos si los necesitas
-        );
+    // Agregar alerta de JavaScript para verificar si se envió el formulario
+    echo "<script>alert('Se envió el formulario');</script>";
 
-        // Incluir el controlador de usuarios
+    // Verificar si se recibió el nombre de usuario y los nuevos datos
+    if (isset($_POST["usuarioModificacion"]) && isset($_POST["calleModificacion"]) && isset($_POST["nuevoNombre"]) && isset($_POST["nuevoNumero"]) && isset($_POST["nuevosRegalos"])) {
+        // Obtener los datos del formulario
+        $usuario = $_POST["usuarioModificacion"];
+        $calle = $_POST["calleModificacion"];
+        $nuevoNombre = $_POST["nuevoNombre"];
+        $nuevoNumero = $_POST["nuevoNumero"];
+        $nuevosRegalos = $_POST["nuevosRegalos"];
+
+        // Llamar al método del controlador para modificar los datos del usuario
         require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
-
-        // Crear una instancia del controlador de usuarios
-        $registro = new UsuariosController();
-
-        // Llamar al método para registrar usuario y pasar los datos
-        $registro->registroUsuarioController($datos);
-
-        echo '<script>alert("¡Usuario registrado correctamente!");</script>';
-    } else {
-        // Si faltan campos, muestra un mensaje de error
-        echo '<script>alert("¡Error! Faltan campos obligatorios en el formulario.");</script>';
+        $controlador = new UsuariosController();
+        $controlador->modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos);
     }
 }
 ?>
@@ -85,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Reyes Magos - Alta de Usuario</title>
+    <title>Alta de Usuario</title>
 
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -133,13 +125,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="form-group">
                                 <label for="inputCalle">Calle</label>
                                 <!-- Lista desplegable para seleccionar la calle -->
-                                <select id="inputCalle" name="calleRegistro" class="form-control" required>
+                                <select name="calleModificacion" class="form-control" required>
                                 <option value="">Seleccione una calle</option>
-                                <?php foreach ($calles as $calle) { ?>
-                                <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
+                            <?php foreach ($calles as $calle) { ?>
+                            <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
                             <?php } ?>
-                        </select>
-                        </div>
+                            </select>
+                            </div>
 
 
                             <div class="form-group">
