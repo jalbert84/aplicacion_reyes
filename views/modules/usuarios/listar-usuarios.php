@@ -55,11 +55,11 @@ if(!$_SESSION["validar"]) {
         ];
 
         $calles_rojo = [
-            "CAMÍ DE RAFELBUNYOL",
+            "TIRANT LO BLANC",
             "RAMÓN I CAJAL",
             "TARAZONA",
-            "TIRANT LO BLANC",
             "SANT BERTOMEU",
+            "REAL ACEQUIA DE MONCADA",
             "PUNTARRÓ"
         ];
 
@@ -72,7 +72,7 @@ if(!$_SESSION["validar"]) {
 
         $calles_azul = [
             "BONIFACI FERRER",
-            "PRIMER DE MAIG",
+            "PRIMER DE MAIG (1-8)",
             "ANTONIO ESPOLIO",
             "PLAÇA NOU D’OCTUBRE",
             "SANT DÍDAC",
@@ -95,7 +95,10 @@ if(!$_SESSION["validar"]) {
             "SANT VICENT",
             "CAVALLERS (10-FINAL)",
             "CALVARI",
-            "AUSIÀS MARCH"
+            "AUSIÀS MARCH",
+            "PRIMER DE MAIG (19-FINAL)",
+            "CAMÍ DE RAFELBUNYOL",
+
         ];
 
         // Función para generar los enlaces

@@ -63,7 +63,7 @@ if(!$_SESSION["validar"]) {
         <!-- Imagen grande -->
         <div class="row">
             <div class="col-md-12">
-                <img src="mapa-prueba.jpg" class="img-responsive center-block large-image" alt="Imagen Grande">
+                <img src="mapa_recorridos.jpg" class="img-responsive center-block large-image" alt="Imagen Grande">
             </div>
         </div>
     </div>

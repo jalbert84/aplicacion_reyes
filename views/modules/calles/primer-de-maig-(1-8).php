@@ -13,12 +13,12 @@ if(!$_SESSION["validar"]) {
 // Incluir el controlador de usuarios
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
-// Obtener los usuarios de la calle PrimerDeMaig
+// Obtener los usuarios de la calle PrimerDeMaig18
 $usuariosController = new UsuariosController();
-$usuariosPrimerDeMaig = $usuariosController->obtenerUsuariosPorCalleController("primer_de_maig");
+$usuariosPrimerDeMaig18 = $usuariosController->obtenerUsuariosPorCalleController("primer_de_maig_1_8");
 
 $orden = 1;
-foreach ($usuariosPrimerDeMaig as &$usuario) {
+foreach ($usuariosPrimerDeMaig18 as &$usuario) {
     $usuario['orden'] = $orden; // Asignar un orden inicial basado en el orden en que aparecen los registros
     $orden++;
 }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Actualizar el orden de los usuarios en la base de datos utilizando el controlador
         try {
-            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'primerdemaig');
+            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'primerdemaig18');
             // Imprimir un script JavaScript para mostrar el mensaje emergente
             echo '<script>alert("Cambios guardados correctamente.");</script>';
             exit(); // Salir del script después de enviar la respuesta
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrer Primer de Maig</title>
+    <title>Carrer Primer de Maig (19-Final)</title>
     
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary no-print">Volver al Listado de Calles</a>
 
-    <h1 class="text-center" style="color: white;">Carrer Primer de Maig</h1>
+    <h1 class="text-center" style="color: white;">Carrer Primer de Maig (19-Final)</h1>
     <div class="actions-container">
     <input type="number" id="numeroInicial" min="1" value="1" size="4" placeholder="Número de lista">
     <button class="boton" onclick="actualizarNumeros()">Actualizar</button>
@@ -211,18 +211,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     </div>
 
-    <?php if (!empty($usuariosPrimerDeMaig)) : ?>
+    <?php if (!empty($usuariosPrimerDeMaig18)) : ?>
     <div id="usuarios" class="usuarios-container">
         <?php 
         // Obtener el último usuario
-        $ultimoUsuario = end($usuariosPrimerDeMaig);
+        $ultimoUsuario = end($usuariosPrimerDeMaig18);
         
         // Reiniciar el puntero del array
-        reset($usuariosPrimerDeMaig);
+        reset($usuariosPrimerDeMaig18);
         
         // Mostrar todos los usuarios excepto el último
-        for ($i = 0; $i < count($usuariosPrimerDeMaig) - 1; $i++) : 
-            $usuario = $usuariosPrimerDeMaig[$i];
+        for ($i = 0; $i < count($usuariosPrimerDeMaig18) - 1; $i++) : 
+            $usuario = $usuariosPrimerDeMaig18[$i];
         ?>
             <div class="usuario" data-id="<?php echo $usuario['id']; ?>">
                 <div><?php echo $i + 1; ?></div>
@@ -240,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
         <div class="usuario" data-id="<?php echo $ultimoUsuario['id']; ?>">
-            <div><?php echo count($usuariosPrimerDeMaig); ?></div>
+            <div><?php echo count($usuariosPrimerDeMaig18); ?></div>
             <?php if (isset($ultimoUsuario['numero'])) : ?>
                 <div><?php echo $ultimoUsuario['numero']; ?></div>
             <?php endif; ?>
@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 <?php else : ?>
-    <p>No se encontraron usuarios registrados en la calle PrimerDeMaig.</p>
+    <p>No se encontraron usuarios registrados en la calle PrimerDeMaig18.</p>
 <?php endif; ?>
 
     <script>
@@ -343,7 +343,7 @@ function guardarOrdenUsuarios() {
     });
     
     // Enviar una solicitud AJAX al servidor con el orden de los usuarios
-    fetch('./primer-de-maig.php', {
+    fetch('./primer-de-maig-(1-8).php', {
         method: 'POST',
         body: JSON.stringify({ usuariosOrdenados: usuariosOrdenados }),
         headers: {
