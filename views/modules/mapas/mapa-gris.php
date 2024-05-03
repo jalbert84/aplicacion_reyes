@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Azul</title>
+    <title>Mapa Gris</title>
     <style>
         /* Establecer estilos para el contenedor principal */
         body, html {
@@ -60,8 +60,8 @@
 
     <!-- Contenedor principal del mapa -->
     <div id="map-container">
-        <!-- Imagen del mapa azul -->
-        <img id="map-image" src="mapa-prueba.jpg" alt="Mapa Azul">
+        <!-- Imagen del mapa gris -->
+        <img id="map-image" src="mapa_rei_gris.jpg" alt="Mapa gris">
     </div>
 
     <script>
