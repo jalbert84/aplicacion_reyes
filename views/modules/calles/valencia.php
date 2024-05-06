@@ -87,10 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .seleccionado {
             background-color: #c8e6c9; /* Cambia el color de fondo cuando está seleccionado */
         }
-        .container {
-            margin: 10 auto; /* Centra el contenedor horizontalmente */
-            max-width: 800px; /* Ancho máximo del contenedor */
-        }
+       
 
         /* Ajuste del ancho de las columnas */
         .usuario div:nth-child(1) {
@@ -107,11 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .usuario div:nth-child(4) {
             flex: 2; /* 10% del ancho total */
-        }
-
-        .container {
-            margin: 10 auto; /* Centra el contenedor horizontalmente */
-            max-width: 800px; /* Ancho máximo del contenedor */
         }
 
         .boton-container {
@@ -162,26 +154,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 visibility: hidden;
                 position: fixed;
             }
-            .container {
-                margin-top: 50;
-            }
-            .usuario {
-            /* Eliminar el margen superior para todas las líneas de usuario */
-            margin-top: 0;
-            }
         
             /* Agregar un margen superior solo para la primera línea de usuario */
             .usuario:first-child {
-            margin-top: 70px; /* Ajusta el valor según sea necesario */
+            margin-top: 50px; /* Ajusta el valor según sea necesario */
             }
 
-            .usuario:first-child {
-            margin-top: 70px; /* Ajusta el valor según sea necesario */
+            .usuario:nth-child(23) {
+            page-break-after: always;
+            }
+
+            .usuario:nth-child(24) {
+            padding-top : 23mm;
             }
 
             button {
                 display: none; /* Oculta todos los botones en el modo de impresión */
-                position: fixed;
             }
 
             .nav.navbar-right * {
@@ -211,17 +199,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             h1:first-child {
             display: block; /* Mostrar el título solo en la primera página */
-        }
+            }
 
             h1:not(:first-child) {
             display: block; /* Mostrar el título en todas las páginas que no sean la primera */
             position: fixed; /* Hacer que el título sea fijo en la parte superior */
             width: 100%; /* Ocupar todo el ancho de la página */
             text-align: center; /* Centrar el texto */
-            background-color: #fff; /* Fondo blanco para que el texto sea legible */
             margin: 0; /* Eliminar cualquier margen */
-            padding: 10px 0; /* Añadir un espacio interno para una apariencia adecuada */
-            z-index: 999; /* Asegurarse de que el título esté por encima de otros elementos */
         }
 
         }
