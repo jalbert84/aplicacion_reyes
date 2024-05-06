@@ -157,20 +157,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 margin-top: 0;
                 padding-top: 0;
             }
+            
             .container {
                 visibility: hidden;
+                position: fixed;
             }
             .container {
-                margin-top: 0; /* Elimina el margen superior del contenedor */
+                margin-top: 50;
+            }
+            .usuario {
+            /* Eliminar el margen superior para todas las líneas de usuario */
+            margin-top: 0;
+            }
+        
+            /* Agregar un margen superior solo para la primera línea de usuario */
+            .usuario:first-child {
+            margin-top: 70px; /* Ajusta el valor según sea necesario */
             }
 
+            .usuario:first-child {
+            margin-top: 70px; /* Ajusta el valor según sea necesario */
+            }
 
             button {
                 display: none; /* Oculta todos los botones en el modo de impresión */
-            }
-
-            button {
-                display: none; /* Oculta todos los botones en el modo de impresión */
+                position: fixed;
             }
 
             .nav.navbar-right * {
@@ -190,7 +201,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             .boton-container {
             display: none; /* Ocultar el contenedor de los botones en modo de impresión */
+            position: fixed;
             }
+
+            h1 {
+            display: none; /* Ocultar el título en todas las páginas */
+            }
+
+
+            h1:first-child {
+            display: block; /* Mostrar el título solo en la primera página */
+        }
+
+            h1:not(:first-child) {
+            display: block; /* Mostrar el título en todas las páginas que no sean la primera */
+            position: fixed; /* Hacer que el título sea fijo en la parte superior */
+            width: 100%; /* Ocupar todo el ancho de la página */
+            text-align: center; /* Centrar el texto */
+            background-color: #fff; /* Fondo blanco para que el texto sea legible */
+            margin: 0; /* Eliminar cualquier margen */
+            padding: 10px 0; /* Añadir un espacio interno para una apariencia adecuada */
+            z-index: 999; /* Asegurarse de que el título esté por encima de otros elementos */
+        }
+
         }
     </style>
 </head>
