@@ -84,9 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="portlet-title">
                         <h4>Formulario de baja de usuario</h4>
                     </div>
-                    <div class="portlet-widgets">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#basicFormExample"><i class="fa fa-chevron-down"></i></a>
-                    </div>
                     <div class="clearfix"></div>
                 </div>
 

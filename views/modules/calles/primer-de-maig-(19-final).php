@@ -87,10 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .seleccionado {
             background-color: #c8e6c9; /* Cambia el color de fondo cuando está seleccionado */
         }
-        .container {
-            margin: 10 auto; /* Centra el contenedor horizontalmente */
-            max-width: 800px; /* Ancho máximo del contenedor */
-        }
+       
 
         /* Ajuste del ancho de las columnas */
         .usuario div:nth-child(1) {
@@ -107,11 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .usuario div:nth-child(4) {
             flex: 2; /* 10% del ancho total */
-        }
-
-        .container {
-            margin: 10 auto; /* Centra el contenedor horizontalmente */
-            max-width: 800px; /* Ancho máximo del contenedor */
         }
 
         .boton-container {
@@ -157,16 +149,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 margin-top: 0;
                 padding-top: 0;
             }
+            
             .container {
                 visibility: hidden;
+                position: fixed;
             }
-            .container {
-                margin-top: 0; /* Elimina el margen superior del contenedor */
+        
+            /* Agregar un margen superior solo para la primera línea de usuario */
+            .usuario:first-child {
+            margin-top: 50px; /* Ajusta el valor según sea necesario */
             }
 
+            .usuario:nth-child(23) {
+            page-break-after: always;
+            }
 
-            button {
-                display: none; /* Oculta todos los botones en el modo de impresión */
+            .usuario:nth-child(24) {
+            padding-top : 23mm;
             }
 
             button {
@@ -190,7 +189,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             .boton-container {
             display: none; /* Ocultar el contenedor de los botones en modo de impresión */
+            position: fixed;
             }
+
+            h1 {
+            display: none; /* Ocultar el título en todas las páginas */
+            }
+
+
+            h1:first-child {
+            display: block; /* Mostrar el título solo en la primera página */
+            }
+
+            h1:not(:first-child) {
+            display: block; /* Mostrar el título en todas las páginas que no sean la primera */
+            position: fixed; /* Hacer que el título sea fijo en la parte superior */
+            width: 100%; /* Ocupar todo el ancho de la página */
+            text-align: center; /* Centrar el texto */
+            margin: 0; /* Eliminar cualquier margen */
+        }
+
         }
     </style>
 </head>

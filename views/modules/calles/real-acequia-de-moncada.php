@@ -13,12 +13,12 @@ if(!$_SESSION["validar"]) {
 // Incluir el controlador de usuarios
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
-// Obtener los usuarios de la calle PlazaAnticRegneDeValencia
+// Obtener los usuarios de la calle RealAcequiaDeMoncada
 $usuariosController = new UsuariosController();
-$usuariosPlazaAnticRegneDeValencia = $usuariosController->obtenerUsuariosPorCalleController("plaza_antic_regne_de_valencia");
+$usuariosRealAcequiaDeMoncada = $usuariosController->obtenerUsuariosPorCalleController("real_acequia_de_moncada");
 
 $orden = 1;
-foreach ($usuariosPlazaAnticRegneDeValencia as &$usuario) {
+foreach ($usuariosRealAcequiaDeMoncada as &$usuario) {
     $usuario['orden'] = $orden; // Asignar un orden inicial basado en el orden en que aparecen los registros
     $orden++;
 }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Actualizar el orden de los usuarios en la base de datos utilizando el controlador
         try {
-            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'plazaanticregnedevalencia');
+            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'realacequiademoncada');
             // Imprimir un script JavaScript para mostrar el mensaje emergente
             echo '<script>alert("Cambios guardados correctamente.");</script>';
             exit(); // Salir del script después de enviar la respuesta
@@ -228,18 +228,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     </div>
 
-    <?php if (!empty($usuariosPlazaAnticRegneDeValencia)) : ?>
+    <?php if (!empty($usuariosRealAcequiaDeMoncada)) : ?>
     <div id="usuarios" class="usuarios-container">
         <?php 
         // Obtener el último usuario
-        $ultimoUsuario = end($usuariosPlazaAnticRegneDeValencia);
+        $ultimoUsuario = end($usuariosRealAcequiaDeMoncada);
         
         // Reiniciar el puntero del array
-        reset($usuariosPlazaAnticRegneDeValencia);
+        reset($usuariosRealAcequiaDeMoncada);
         
         // Mostrar todos los usuarios excepto el último
-        for ($i = 0; $i < count($usuariosPlazaAnticRegneDeValencia) - 1; $i++) : 
-            $usuario = $usuariosPlazaAnticRegneDeValencia[$i];
+        for ($i = 0; $i < count($usuariosRealAcequiaDeMoncada) - 1; $i++) : 
+            $usuario = $usuariosRealAcequiaDeMoncada[$i];
         ?>
             <div class="usuario" data-id="<?php echo $usuario['id']; ?>">
                 <div><?php echo $i + 1; ?></div>
@@ -257,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
         <div class="usuario" data-id="<?php echo $ultimoUsuario['id']; ?>">
-            <div><?php echo count($usuariosPlazaAnticRegneDeValencia); ?></div>
+            <div><?php echo count($usuariosRealAcequiaDeMoncada); ?></div>
             <?php if (isset($ultimoUsuario['numero'])) : ?>
                 <div><?php echo $ultimoUsuario['numero']; ?></div>
             <?php endif; ?>
@@ -271,7 +271,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 <?php else : ?>
-    <p>No se encontraron usuarios registrados en la calle PlazaAnticRegneDeValencia.</p>
+    <p>No se encontraron usuarios registrados en la calle RealAcequiaDeMoncada.</p>
 <?php endif; ?>
 
     <script>

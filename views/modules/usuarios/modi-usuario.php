@@ -134,9 +134,6 @@ if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) &&
             <div class="portlet-title">
                 <h4>Modificación de usuario</h4>
             </div>
-            <div class="portlet-widgets">
-                <a data-toggle="collapse" data-parent="#accordion" href="#basicFormExample"><i class="fa fa-chevron-down"></i></a>
-            </div>
             <div class="clearfix"></div>
         </div>
 
@@ -152,7 +149,7 @@ if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) &&
                         <label for="inputCalle">Calle</label>
 
                         <!-- Lista desplegable para seleccionar la calle -->
-                        <<select name="calleModificacion" class="form-control" required>
+                        <select name="calleModificacion" class="form-control" required>
                         <option value="">Seleccione una calle</option>
                         <?php foreach ($calles as $calle) { ?>
                         <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
