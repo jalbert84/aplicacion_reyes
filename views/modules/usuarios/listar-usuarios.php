@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 
 if(!$_SESSION["validar"]) {  
     echo "<script>"
-        . "window.location.replace(\"http://10.224.24.247/reparto/\");"
+        . "window.location.replace(\"http://10.224.24.247/recogida/\");"
         . "</script>";
     exit();
 }

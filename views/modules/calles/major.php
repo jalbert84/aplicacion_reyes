@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 
 // Verificar si el usuario está autenticado
 if(!$_SESSION["validar"]) {  
-    header("Location: http://10.224.24.247/reparto/"); // Redirigir al usuario si no está autenticado
+    header("Location: http://10.224.24.247/recogida/"); // Redirigir al usuario si no está autenticado
     exit();
 }
 

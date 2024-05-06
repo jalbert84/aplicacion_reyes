@@ -11,9 +11,9 @@ class LoginController {
         $usuarioValido = "usuario"; // Cambia esto por el usuario que desees
         $contraseñaValida = "contraseña"; // Cambia esto por la contraseña que desees
 
-        if (isset($_POST["emailIngreso"]) && isset($_POST["passwordIngreso"])) {
+        if (isset($_POST["usuarioIngreso"]) && isset($_POST["passwordIngreso"])) {
 
-            $emailIngresado = $_POST["emailIngreso"];
+            $emailIngresado = $_POST["usuarioIngreso"];
             $passwordIngresada = $_POST["passwordIngreso"];
 
             if ($emailIngresado == $usuarioValido && $passwordIngresada == $contraseñaValida) {

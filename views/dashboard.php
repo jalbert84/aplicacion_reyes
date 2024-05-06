@@ -1,17 +1,23 @@
 <?php 
+$login_success = false;
 if (!isset($_SESSION)) { session_start(); } 
 if(!$_SESSION["validar"]){  
+    if (!$login_success) {
+        // Si el inicio de sesión falla, redirige de vuelta a la página de inicio con un parámetro de error
+        header("Location: ../index.php?login_error=true");
+        exit;
+    }
     echo "<script>"
-        . "window.location.replace(\"http://10.224.24.247/reparto/\");"
-        . "</script>";
-    exit();
+    . "window.location.replace(\"http://10.224.24.247/recogida/\");"
+    . "</script>";
+exit();
 }
 
 require_once("../models/db/conexion.php");
 
 // Llama al método para comprobar la conexión
 Conexion::comprobarConexion();
-
+// Cierra la sesión
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,12 +39,13 @@ Conexion::comprobarConexion();
     <link href="css/plugins.css" rel="stylesheet">
     <!-- THEME DEMO STYLES -->
     <link href="css/demo.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center" style="color: white;">Reparto regalos Reyes Magos</h1>
+            <h1 class="text-center" style="color: white;">Recogida regalos Reyes Magos</h1>
             <div class="text-center">
                 <a href="modules/usuarios/alta-usuario.php" class="btn btn-lg btn-primary">Alta de Usuario</a>
                 <a href="modules/usuarios/baja-usuario.php" class="btn btn-lg btn-primary">Baja de Usuario</a>
@@ -65,4 +72,22 @@ Conexion::comprobarConexion();
     <!-- THEME SCRIPTS -->
     <script src="js/flex.js"></script>
 </body>
+
+<button type="button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i> Log Out</button>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    // Función para mostrar el modal de confirmación
+    function confirmLogout() {
+        if (confirm("¿Ya te vas? Ale... pues un abrazo")) {
+            // Si el usuario confirma, redirige a index.php
+            window.location.href = "log-out.php";
+        } else {
+            // Si el usuario cancela, no hace nada
+        }
+    }
+    
+    </script>
 </html>

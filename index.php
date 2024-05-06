@@ -5,10 +5,10 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Gestión de la recogida de regalos">
+        <meta name="author" content="Amics del reis d'Alfara">
 
-        <title>Reparto de regalos v1.0</title>
+        <title>Recogida de regalos BETA</title>
 
         <!-- GLOBAL STYLES -->
         <link href="views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
         <script src="js/respond.min.js"></script>
         <![endif]-->
 
+
     </head>
 
     <body>
@@ -38,7 +39,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-banner text-center">
-                        <h1><i class="fa fa-pagelines"></i> Reparto regalos</h1>
+                        <h1><i class="fa fa-crown"></i> Recogida de regalos</h1>
                     </div>
                     <div class="portlet portlet-green">
                         <div class="portlet-heading login-heading">
@@ -54,17 +55,15 @@
                                 <fieldset>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">@</span>
-                                        <input class="form-control" placeholder="E-mail" name="emailIngreso" type="text" required>
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input class="form-control" placeholder="Nombre de usuario" name="usuarioIngreso" type="text" required>
                                     </div>
                                     <br>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                         <input class="form-control" placeholder="Password" name="passwordIngreso" type="password" required>
                                     </div>                              
-
                                     <br>
-
                                     <input type="submit" class="btn btn-lg btn-green btn-block" value="Ingresar">
 
                                 </fieldset>                          
@@ -83,7 +82,7 @@
 
                                         echo "<br><div class=\"alert alert-danger alert-dismissable\">
                                             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
-                                            <strong>Alerta:</strong> Contraseña y/o e-mail incorrectos!
+                                            <strong>Alerta:</strong> Contraseña y/o usuario incorrectos!
                                         </div>";
                                     }
                                 }

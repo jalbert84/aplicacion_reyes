@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 
 if(!$_SESSION["validar"]) {  
     echo "<script>"
-        . "window.location.replace(\"http://10.224.24.247/reparto/\");"
+        . "window.location.replace(\"http://10.224.24.247/recogida/\");"
         . "</script>";
     exit();
 }
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['mensaje'] = $resultado; // Mensaje de error
                 }
             } else {
-                $_SESSION['mensaje'] = "EL USUARIO NO EXISTE";
+                $_SESSION['mensaje'] = "ESO QUE HAS ESRITO NO LO TENGO. ";
             }
         } else {
             $_SESSION['mensaje'] = "Por favor, proporcione el nombre y calle del usuario a dar de baja.";
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Reyes Magos - Baja de Usuario</title>
+    <title>Baja de Usuario</title>
 
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">

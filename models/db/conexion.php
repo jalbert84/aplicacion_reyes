@@ -1,7 +1,7 @@
 <?php
 class Conexion {
     public static function conectar() {
-        $l_link = new PDO("mysql:host=localhost;dbname=reparto", "root", "");
+        $l_link = new PDO("mysql:host=localhost;dbname=recogida", "root", "");
         return $l_link;
     }
 
