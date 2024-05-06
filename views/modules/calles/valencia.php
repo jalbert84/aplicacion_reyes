@@ -133,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         h1 {
             text-align: center;
             margin-top: 15px;
-
         }
 
         .actions-container {
