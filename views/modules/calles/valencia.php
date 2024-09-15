@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         display: block;
         text-align: center; /* Centrar el título */
         margin: 0;
-        page-break-before: always; /* Asegura que el título esté en la primera página */
+        page-break-before: always 1; /* Asegura que el título esté en la primera página */
     }
 
     .boton-container, .actions-container, .no-print {
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .usuario:first-child {
-        margin-top: 50px; /* Ajustar el margen superior del primer usuario */
+        margin-top: 30px; /* Ajustar el margen superior del primer usuario */
     }
 
     .usuario:nth-child(26) {

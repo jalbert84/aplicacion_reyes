@@ -141,73 +141,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 5px auto;
         }
 
-        @media print {
-            h1, .usuario, .usuario * {
-                visibility: visible;
-                margin-top: 0;
-                padding-top: 0;
-            }
-            
-            .container {
-                visibility: hidden;
-                position: fixed;
-            }
-        
-            /* Agregar un margen superior solo para la primera línea de usuario */
-            .usuario:first-child {
-            margin-top: 50px; /* Ajusta el valor según sea necesario */
-            }
+ @media print {
+    /* Ocultar todo el contenido excepto la tabla */
+    .container {
+        visibility: hidden;
+        position: fixed;
+    }
 
-            .usuario:nth-child(23) {
-            page-break-after: always;
-            }
+    .usuario {
+        display: flex;
+        border: 1px solid #000; /* Borde exterior igual al de las celdas internas */
+        padding: 0; /* Sin padding para evitar espacio extra */
+        margin: 0; /* Eliminar márgenes */
+        page-break-inside: avoid; /* Evitar saltos de página dentro de un usuario */
+    }
 
-            .usuario:nth-child(24) {
-            padding-top : 23mm;
-            }
+    /* Agregar bordes y estilos para hacer que se vea como una tabla */
+    .usuario div {
+        border: 1px solid #000; /* Borde para cada celda */
+        padding: 5px; /* Espacio interno */
+    }
 
-            button {
-                display: none; /* Oculta todos los botones en el modo de impresión */
-            }
+    /* Añadir borde inferior entre filas */
+    .usuario:not(:last-child) {
+        border-bottom: none; /* Eliminar borde inferior extra */
+    }
 
-            .nav.navbar-right * {
-                display: none;
-            }
+    /* Mostrar el título en la primera página y en la parte superior */
+    h1 {
+        display: block;
+        text-align: center; /* Centrar el título */
+        margin: 0;
+        page-break-before: always 1; /* Asegura que el título esté en la primera página */
+    }
 
-            .navbar-header * {
-                display: none;
-            }
-            .actions-container {
-                visibility: hidden;
-            }
+    .boton-container, .actions-container, .no-print {
+        display: none; /* Ocultar botones y elementos no imprimibles */
+    }
 
-            .no-print {
-                display: none; /* Oculta los elementos con la clase 'no-print' en el modo de impresión */
-            }
+    .usuario:first-child {
+        margin-top: 30px; /* Ajustar el margen superior del primer usuario */
+    }
 
-            .boton-container {
-            display: none; /* Ocultar el contenedor de los botones en modo de impresión */
-            position: fixed;
-            }
-
-            h1 {
-            display: none; /* Ocultar el título en todas las páginas */
-            }
-
-
-            h1:first-child {
-            display: block; /* Mostrar el título solo en la primera página */
-            }
-
-            h1:not(:first-child) {
-            display: block; /* Mostrar el título en todas las páginas que no sean la primera */
-            position: fixed; /* Hacer que el título sea fijo en la parte superior */
-            width: 100%; /* Ocupar todo el ancho de la página */
-            text-align: center; /* Centrar el texto */
-            margin: 0; /* Eliminar cualquier margen */
-        }
-
-        }
+    .usuario:nth-child(26) {
+        page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
+    }
+}
     </style>
 </head>
 <body>
