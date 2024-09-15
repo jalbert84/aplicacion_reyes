@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($usuario['regalos'])) : ?>
                     <div><?php echo $usuario['regalos']; ?></div>
                 <?php endif; ?>
-                <button class="ocultar-boton" onclick="ocultarUsuario(this)">Ocultar</button>
+
             </div>
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
@@ -265,7 +265,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($ultimoUsuario['regalos'])) : ?>
                 <div><?php echo $ultimoUsuario['regalos']; ?></div>
             <?php endif; ?>
-            <button class="ocultar-boton" onclick="ocultarUsuario(this)">Ocultar</button>
         </div>
     </div>
 <?php else : ?>
@@ -408,11 +407,6 @@ function mostrarMensaje(mensaje) {
         // Eliminar el elemento del DOM después de ocultarlo
         document.body.removeChild(popup);
     }, 3000);
-}
-
-function ocultarUsuario(boton) {
-    var usuario = boton.parentNode;
-    usuario.style.display = 'none';
 }
 
 </script>
