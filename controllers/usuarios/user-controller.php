@@ -4,25 +4,29 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/mo
 class UsuariosController{
     
     public function registroUsuarioController($datos){
-
         // Insertar los datos del usuario en la base de datos
         $conexion = Conexion::conectar();
         
         // Normalizar el nombre de la calle para usarlo como nombre de tabla
         $tabla = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $datos["calle"]));
-    
+        
+        // Obtener el número de usuarios actuales en la tabla para determinar el próximo id
+        $stmtCount = $conexion->prepare("SELECT COUNT(*) FROM $tabla");
+        $stmtCount->execute();
+        $nextId = $stmtCount->fetchColumn() + 1; // El siguiente id es el número de usuarios actuales + 1
+        
         // Preparar la consulta para insertar los datos en la tabla correspondiente
-        $stmt = $conexion->prepare("INSERT INTO $tabla (numero, nombre, regalos) VALUES (:numero, :nombre, :regalos)");
+        $stmt = $conexion->prepare("INSERT INTO $tabla (id, numero, nombre, regalos) VALUES (:id, :numero, :nombre, :regalos)");
+        $stmt->bindParam(":id", $nextId);
         $stmt->bindParam(":numero", $datos["numero"]);
         $stmt->bindParam(":nombre", $datos["nombre"]);
         $stmt->bindParam(":regalos", $datos["regalos"]);
-       
+        
         // Ejecutar la consulta
         $stmt->execute();
     
         $_SESSION['registro_exitoso'] = true;
     }
-    
 
 
     public function verificarUsuarioController($nombre, $calle) {
@@ -120,8 +124,6 @@ public function modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuev
     }
 }
 
-
-
     
 public function obtenerUsuariosPorCalleController($calle) {
     try {
@@ -152,7 +154,7 @@ public function actualizarOrdenUsuariosController($usuariosOrdenados, $nombreTab
         // Comenzar una transacción
         $conexion->beginTransaction();
 
-        // Obtener todos los usuarios de la tabla valencia y almacenarlos en un array
+        // Obtener todos los usuarios de la tabla y almacenarlos en un array
         $querySelect = "SELECT * FROM $nombreTabla";
         $stmtSelect = $conexion->prepare($querySelect);
         $stmtSelect->execute();
@@ -164,15 +166,18 @@ public function actualizarOrdenUsuariosController($usuariosOrdenados, $nombreTab
         $stmtDelete->execute();
 
         // Insertar los usuarios en el nuevo orden, utilizando el orden especificado por $usuariosOrdenados
+        $nuevoId = 1;
         foreach ($usuariosOrdenados as $idUsuario) {
             foreach ($usuarios as $usuario) {
                 if ($usuario['id'] == $idUsuario) {
-                    $queryInsert = "INSERT INTO $nombreTabla (numero, nombre, regalos) VALUES (:numero, :nombre, :regalos)";
+                    $queryInsert = "INSERT INTO $nombreTabla (id, numero, nombre, regalos) VALUES (:id, :numero, :nombre, :regalos)";
                     $stmtInsert = $conexion->prepare($queryInsert);
+                    $stmtInsert->bindValue(':id', $nuevoId);
                     $stmtInsert->bindValue(':numero', $usuario['numero']);
                     $stmtInsert->bindValue(':nombre', $usuario['nombre']);
                     $stmtInsert->bindValue(':regalos', $usuario['regalos']);
                     $stmtInsert->execute();
+                    $nuevoId++;
                     break;
                 }
             }
@@ -190,7 +195,6 @@ public function actualizarOrdenUsuariosController($usuariosOrdenados, $nombreTab
         throw new Exception("Error al actualizar el orden de los usuarios: " . $e->getMessage());
     }
 }
-
 
     }
 
