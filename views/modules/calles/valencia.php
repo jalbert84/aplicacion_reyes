@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .usuario {
         display: flex;
-        border: none; /* Eliminar borde externo alrededor de cada usuario */
+        border: 1px solid #000; /* Borde exterior igual al de las celdas internas */
         padding: 0; /* Sin padding para evitar espacio extra */
         margin: 0; /* Eliminar márgenes */
         page-break-inside: avoid; /* Evitar saltos de página dentro de un usuario */
@@ -185,11 +185,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         margin-top: 50px; /* Ajustar el margen superior del primer usuario */
     }
 
-    .usuario:nth-child(23) {
+    .usuario:nth-child(26) {
         page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
     }
 }
-
 
     </style>
 </head>
