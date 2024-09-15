@@ -59,7 +59,7 @@
 </head>
 <body>
     <!-- Botón para volver a la página de recorridos -->
-    <button class="back-button" onclick="window.location.href = '../usuarios/recorridos.php'">Volver a Recorridos</button>
+    <button class="back-button" onclick="window.location.href = 'javascript:history.back()'">Volver a atrás</button>
 
     <!-- Contenedor principal del mapa -->
     <div id="map-container">

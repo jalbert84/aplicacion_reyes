@@ -65,6 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="/views/css/style.css" rel="stylesheet">
     <link href="/views/css/plugins.css" rel="stylesheet">
     <style>
+        .btn-mapa-verde {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
         /* Estilos para los usuarios */
         .usuario, .usuario div {
             user-select: none; /* Evita la selección de texto */
@@ -194,6 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary no-print">Volver al Listado de Calles</a>
+    <a href="/../views/modules/mapas/mapa-verde.php" class="btn-mapa-verde">Mapa</a>
 
     <h1 class="text-center" style="color: white;">Carrer Santa Bàrbera</h1>
     <div class="actions-container">
