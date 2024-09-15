@@ -182,6 +182,7 @@ public function actualizarOrdenUsuariosController($usuariosOrdenados, $nombreTab
                 }
             }
         }
+        $query = "SELECT * FROM $nombreTabla ORDER BY numero ASC"; // Para ordenar por el número de usuario
 
         // Confirmar la transacción
         $conexion->commit();
