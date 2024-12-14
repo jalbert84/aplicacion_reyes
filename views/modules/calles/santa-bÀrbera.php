@@ -198,12 +198,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .usuario:nth-child(26) {
         page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
     }
+
+    .btn-mapa-verde {
+        display: none; /* Ocultar el botón del mapa verde en la impresión */
+    }
+    
+    .btn-primary {
+        display: none; /* Ocultar el botón de volver al menu */
+    }
 }
     </style>
 </head>
 <body>
 
     <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary no-print">Volver al Listado de Calles</a>
+    <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
     <a href="/../views/modules/mapas/mapa-verde.php" class="btn-mapa-verde">Mapa</a>
 
     <h1 class="text-center" style="color: white;">Carrer Santa Bàrbera</h1>

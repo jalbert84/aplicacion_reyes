@@ -93,8 +93,8 @@ if(!$_SESSION["validar"]) {
         $calles_morado = [
             "BLASCO IBAÑEZ",
             "SANT VICENT",
-            "CAVALLERS (10-FINAL)",
             "CALVARI",
+            "CAVALLERS (10-FINAL)",
             "AUSIÀS MARCH",
             "PRIMER DE MAIG (19-FINAL)",
             "CAMÍ DE RAFELBUNYOL",

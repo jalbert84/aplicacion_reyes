@@ -49,8 +49,8 @@ Conexion::comprobarConexion();
             <div class="text-center">
                 <a href="modules/usuarios/alta-usuario.php" class="btn btn-lg btn-primary">Alta de Usuario</a>
                 <a href="modules/usuarios/baja-usuario.php" class="btn btn-lg btn-primary">Baja de Usuario</a>
-                <a href="modules/usuarios/modi-usuario.php" class="btn btn-lg btn-primary">Modificar Usuario</a>
-                <a href="modules/usuarios/listar-usuarios.php" class="btn btn-lg btn-primary">Listado de Calles</a>
+                <!-- <a href="modules/usuarios/modi-usuario.php" class="btn btn-lg btn-primary">Modificar Usuario</a> -->
+                <a href="modules/usuarios/listar-usuarios.php" class="btn btn-lg btn-primary">Orden de reparto</a>
                 <a href="modules/usuarios/recorridos.php" class="btn btn-lg btn-primary">Recorridos</a>
             </div>
         </div>

@@ -65,6 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="/views/css/style.css" rel="stylesheet">
     <link href="/views/css/plugins.css" rel="stylesheet">
     <style>
+        .btn-mapa-azul {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
         /* Estilos para los usuarios */
         .usuario, .usuario div {
             user-select: none; /* Evita la selección de texto */
@@ -188,12 +198,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .usuario:nth-child(26) {
         page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
     }
+
+    .btn-mapa-azul {
+        display: none; /* Ocultar el botón del mapa en la impresión */
+    }
+    
+    .btn-primary {
+        display: none; /* Ocultar el botón de volver al menu */
+    }
 }
     </style>
 </head>
 <body>
 
     <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary no-print">Volver al Listado de Calles</a>
+    <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
+    <a href="/../views/modules/mapas/mapa-azul.php" class="btn-mapa-azul">Mapa</a>
 
     <h1 class="text-center" style="color: white;">Carrer Sant Dídac</h1>
     <div class="actions-container">
