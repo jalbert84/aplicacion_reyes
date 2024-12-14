@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1 class="text-center" style="color: white;">Plaça Antic Regne de València</h1>
     <div class="actions-container">
     <input type="number" id="numeroInicial" min="1" value="1" size="4" placeholder="Número de lista">
-    <button class="boton" onclick="actualizarNumeros()">Actualizar</button>
+    <button class="boton" onclick="actualizarNumeros()">Posición</button>
     <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
     </div>
 
