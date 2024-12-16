@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <div class="form-group">
                             <label for="inputNumero">Número y puerta</label>
-                            <input type="text" fixed-prefix="Nº" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Ingrese número y puerta" required>
+                            <input type="text" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Ingrese número y puerta" required>
 
                             </div>
                             

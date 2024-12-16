@@ -204,6 +204,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .btn-primary {
         display: none; /* Ocultar el botón del mapa en la impresión */
     }
+
+    h4 {
+        display: block !important;
+        visibility: visible !important;
+        margin: 0;
+    }
 }
     </style>
 </head>
@@ -214,6 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <a href="/../views/modules/mapas/mapa-amarillo.php" class="btn-mapa-amarillo">Mapa</a>
 
     <h1 class="text-center" style="color: white;">Carrer 8 de març</h1>
+    <h4 style="display: none;">POSICIÓN__NÚMERO_________________NOMBRE_______________________BULTOS</h4>
     <div class="actions-container">
     <input type="number" id="numeroInicial" min="1" value="1" size="4" placeholder="Número de lista">
     <button class="boton" onclick="actualizarNumeros()">Posición</button>
