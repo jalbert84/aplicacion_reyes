@@ -154,19 +154,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
  @media print {
-    /* Ocultar todo el contenido excepto la tabla */
-    .container {
-        visibility: hidden;
-        position: fixed;
-        margin: 0;
-    }
-
     .usuario {
         display: flex;
         border: 1px solid #000; /* Borde exterior igual al de las celdas internas */
         padding: 0; /* Sin padding para evitar espacio extra */
         margin: 0; /* Eliminar márgenes */
-        page-break-inside: avoid; /* Evitar saltos de página dentro de un usuario */
     }
 
     /* Agregar bordes y estilos para hacer que se vea como una tabla */
@@ -175,41 +167,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         padding: 5px; /* Espacio interno */
     }
 
-    /* Añadir borde inferior entre filas */
-    .usuario:not(:last-child) {
-        border-bottom: none; /* Eliminar borde inferior extra */
-    }
-
     /* Mostrar el título en la primera página y en la parte superior */
     h1 {
-        display: block;
         text-align: center; /* Centrar el título */
         margin: 0;
-        page-break-before: always 1; /* Asegura que el título esté en la primera página */
     }
 
-    .boton-container, .actions-container, .no-print {
+    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn {
         display: none; /* Ocultar botones y elementos no imprimibles */
-    }
-
-    .usuario:first-child {
-        margin-top: 0px; /* Ajustar el margen superior del primer usuario */
-    }
-
-    .usuario:nth-child(26) {
-        page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
-    }
-    
-    .btn-mapa-amarillo {
-        display: none; /* Ocultar el botón del mapa en la impresión */
-    }
-    
-    .btn-primary {
-        display: none; /* Ocultar el botón de volver al menu */
-    }
-
-    .remove-btn {
-        display: none; /* Ocultar el botón X */
     }
 
     h4 {
