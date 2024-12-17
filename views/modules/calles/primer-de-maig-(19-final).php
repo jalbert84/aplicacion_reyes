@@ -207,6 +207,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         display: none; /* Ocultar el botón de volver al menu */
     }
 
+    .remove-btn {
+        display: none; /* Ocultar el botón X */
+    }
+
     h4 {
         display: block !important;
         visibility: visible !important;
@@ -258,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($usuario['regalos'])) : ?>
                     <div><?php echo $usuario['regalos']; ?></div>
                 <?php endif; ?>
-
+                <button class="remove-btn" onclick="eliminarUsuarioTemporalmente(event)">X</button>
             </div>
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
@@ -273,13 +277,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($ultimoUsuario['regalos'])) : ?>
                 <div><?php echo $ultimoUsuario['regalos']; ?></div>
             <?php endif; ?>
+            <button class="remove-btn" onclick="eliminarUsuarioTemporalmente(event)">X</button>
         </div>
     </div>
 <?php else : ?>
     <p>No se encontraron usuarios registrados en la calle PrimerDeMaig19Final.</p>
 <?php endif; ?>
 
-    <script>
+<script>
+function eliminarUsuarioTemporalmente(event) {
+// Obtener el contenedor del usuario al que se le hizo clic
+    var usuario = event.target.closest('.usuario');
+// Ocultar el usuario de forma temporal (sin eliminarlo del DOM)
+    usuario.style.display = 'none';
+}     
+
 var usuariosOrdenados = [];
 
 // Función para mover hacia arriba las líneas de usuario seleccionadas
