@@ -98,6 +98,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #c8e6c9; /* Cambia el color de fondo cuando está seleccionado */
         }
        
+        .arrastrando {
+            opacity: 0.5;
+        }
+        .sobre {
+            border: 2px dashed #00f;
+        }
 
         /* Ajuste del ancho de las columnas */
         .usuario div:nth-child(1) {
@@ -113,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .usuario div:nth-child(4) {
-            flex: 2; /* 10% del ancho total */
+            flex: 3; /* 10% del ancho total */
         }
 
         .boton-container {
@@ -123,7 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .boton {
         margin-right: 10px; /* Espacio entre los botones */
         }
-
 
         /* Estilos para la línea seleccionada */
         .usuario.seleccionado {
@@ -138,14 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .actions-container {
-            display: flex;
-            justify-content: flex-start; /* Alinear elementos al inicio */
+            display: flex;        
             }
 
-            .actions-container input[type="number"] {
-            margin-right: -400px; /* Espacio entre el campo de entrada y el primer botón */
-            }
-        
+        .actions-container input[type="number"] {
+            margin-right: -200px; /* Espacio entre el campo de entrada y el primer botón */
+        }
 
         /* Estilos para el botón de imprimir y actualizar */
         .boton {
@@ -204,16 +207,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <a href="/../views/modules/mapas/mapa-rojo.php" class="btn-mapa-rojo">Mapa</a>
 
     <h1 class="text-center" style="color: white;">Carrer Tirant lo Blanc</h1>
-    <h4 style="display: none;">POSICIÓN__NÚMERO_________________NOMBRE_______________________BULTOS</h4>
+    <h4 style="display: none;">POSICIÓN__NÚMERO_________________NOMBRE__________________BULTOS</h4>
     <div class="actions-container">
-    <input type="number" id="numeroInicial" min="1" value="1" size="4" placeholder="Número de lista">
-    <button class="boton" onclick="actualizarNumeros()">Posición</button>
-    <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
-    </div>
-
-    <div class="boton-container">
-    <button class="boton" id="moverHaciaArribaButton" onclick="moverUsuariosHaciaArriba()">Mover hacia arriba</button>
+    <input type="number" id="numeroInicial" size="3" placeholder="Número de Posición">
+    <button class="boton" onclick="actualizarNumeros()">Actualizar Posición</button>
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
+    <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
     </div>
 
     <?php if (!empty($usuariosTirantLoBlanc)) : ?>
@@ -272,27 +271,6 @@ function eliminarUsuarioTemporalmente(event) {
 
 var usuariosOrdenados = [];
 
-// Función para mover hacia arriba las líneas de usuario seleccionadas
-function moverUsuariosHaciaArriba() {
-    // Obtener las líneas de usuario
-    var usuarios = document.querySelectorAll('.usuario');
-    // Crear un array para almacenar los IDs de los usuarios en el orden actual
-    usuariosOrdenados = [];
-    // Iterar sobre las líneas de usuario para obtener el orden actual
-    usuarios.forEach(function(usuario) {
-        usuariosOrdenados.push(usuario.getAttribute('data-id'));
-    });
-    // Mover las líneas de usuario seleccionadas hacia arriba en el DOM
-    usuarios.forEach(function(usuario, index) {
-        if (usuario.classList.contains('seleccionado')) {
-            var anterior = usuario.previousElementSibling;
-            if (anterior) {
-                usuario.parentNode.insertBefore(usuario, anterior);
-            }
-        }
-    });
-}
-
 // Función para imprimir los usuarios
 function imprimirUsuarios() {
     // Obtener el número inicial ingresado por el usuario
@@ -321,38 +299,45 @@ function actualizarNumeros() {
     });
 }
 
-// Asignar el evento clic a cada línea de usuario para manejar la selección
 document.querySelectorAll('.usuario').forEach(function(usuario) {
-    usuario.addEventListener('click', function() {
-        toggleSeleccion(this);
+    usuario.setAttribute('draggable', true);
+
+    usuario.addEventListener('dragstart', function(event) {
+        event.dataTransfer.setData('text/plain', usuario.getAttribute('data-id'));
+        usuario.classList.add('arrastrando');
+    });
+
+    usuario.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        usuario.classList.add('sobre');
+    });
+
+    usuario.addEventListener('dragleave', function() {
+        usuario.classList.remove('sobre');
+    });
+
+    usuario.addEventListener('drop', function(event) {
+        event.preventDefault();
+        usuario.classList.remove('sobre');
+        
+        const idArrastrado = event.dataTransfer.getData('text/plain');
+        const usuarioArrastrado = document.querySelector(`.usuario[data-id='${idArrastrado}']`);
+        const contenedor = document.getElementById('usuarios');
+        
+        if (usuarioArrastrado && usuario !== usuarioArrastrado) {
+            contenedor.insertBefore(usuarioArrastrado, usuario.nextSibling);
+        }
+    });
+
+    usuario.addEventListener('dragend', function() {
+        usuario.classList.remove('arrastrando');
     });
 });
 
-// Función para seleccionar/deseleccionar una línea de usuario
-function toggleSeleccion(usuario) {
-    var seleccionadas = document.querySelectorAll('.usuario.seleccionado');
-    seleccionadas.forEach(function(seleccionada) {
-        if (seleccionada !== usuario) {
-            seleccionada.classList.remove('seleccionado');
-        }
-    });
-    
-    if (!usuario.classList.contains('seleccionado')) {
-        usuario.classList.add('seleccionado');
-    } else {
-        usuario.classList.remove('seleccionado');
-    }
-}
-
+// Función para guardar el nuevo orden después de arrastrar y soltar
 function guardarOrdenUsuarios() {
-    // Obtener todas las líneas de usuario
-    var usuarios = document.querySelectorAll('.usuario');
-    // Crear un array para almacenar los IDs de los usuarios en el orden actual
-    usuariosOrdenados = [];
-    // Iterar sobre todas las líneas de usuario y agregar sus IDs al arreglo de usuarios ordenados
-    usuarios.forEach(function(usuario) {
-        usuariosOrdenados.push(usuario.getAttribute('data-id'));
-    });
+    const usuarios = document.querySelectorAll('.usuario');
+    const usuariosOrdenados = Array.from(usuarios).map(usuario => usuario.getAttribute('data-id'));
     
     // Enviar una solicitud AJAX al servidor con el orden de los usuarios
     fetch('./tirant-lo-blanc.php', {

@@ -81,7 +81,7 @@ Conexion::comprobarConexion();
 <script>
     // Función para mostrar el modal de confirmación
     function confirmLogout() {
-        if (confirm("¿Ya te vas? Ale... pues un abrazo")) {
+        if (confirm("¿Ya te vas montón de mierda? Pues un abrazo")) {
             // Si el usuario confirma, redirige a index.php
             window.location.href = "log-out.php";
         } else {

@@ -100,6 +100,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="/views/css/plugins.css" rel="stylesheet">
     <!-- THEME DEMO STYLES -->
     <link href="/views/css/demo.css" rel="stylesheet">
+
+    <style>
+        /* Ajustes generales para ampliar el formulario */
+        .form-group label {
+            font-size: 1.5em; /* Tamaño de texto de las etiquetas */
+        }
+        .form-group input, .form-group select {
+            font-size: 1.5em; /* Tamaño de texto de los campos */
+            padding: 25px; /* Más espacio interno */
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        select.form-control {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    font-size: 1.0em; /* Tamaño de texto más grande */
+    padding: 8px; /* Espaciado interno */
+}
+
+select.form-control option {
+    background-color: #ffffff; /* Fondo blanco para opciones */
+    color: #000000; /* Texto negro */
+}
+    </style>
+
 </head>
 <body>
     <div class="container">
@@ -107,17 +133,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-lg-12">
                 <div class="page-title">
                 <h1 class="text-center" style="color: white;">Alta de Usuario</h1>
-                        <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
                 </div>
             </div>
             <!-- /.col-lg-12 -->
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-lg-offset-2">
             <div class="portlet portlet-default">
                 <div class="portlet-heading">
                     <div class="portlet-title">
-                        <h4>Formulario de registro</h4>
+                        <h4>FORMULARIO DE REGISTRO</h4>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -126,15 +151,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="portlet-body">
                         <form role="form" method="post">
                             <div class="form-group">
-                            <label for="inputNombre">Nombre del usuario</label>
-                            <input type="text" id="inputNombre" name="nombreRegistro" class="form-control" placeholder="Ingrese el nombre y apellido de usuario" required>
+                            <label for="inputNombre">Nombre de referencia</label>
+                            <input type="text" id="inputNombre" name="nombreRegistro" class="form-control" placeholder="Nombre y apellido" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputCalle">Calle</label>
                                 <!-- Lista desplegable para seleccionar la calle -->
                                 <select name="calleRegistro" class="form-control" required>
-                                <option value="">Seleccione una calle</option>
+                                <option value="">SELECCIONE UNA CALLE</option>
                             <?php foreach ($calles as $calle) { ?>
                             <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
                             <?php } ?>
@@ -150,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             
                             <div class="form-group">
                             <label for="inputRegalos">Regalos</label>
-                            <input type="text" id="inputRegalos" name="regalosRegistro" class="form-control" placeholder="Ingrese los regalos" required>
+                            <input type="text" id="inputRegalos" name="regalosRegistro" class="form-control" placeholder="Cantidad de bultos" required>
 
                             </div>
 
@@ -161,6 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <!-- /.portlet -->
         </div>
+        <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
     </div>
 
     <!-- GLOBAL SCRIPTS -->
