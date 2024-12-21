@@ -153,19 +153,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 5px auto;
         }
 
- @media print {
-    /* Ocultar todo el contenido excepto la tabla */
-    .container {
-        visibility: hidden;
-        position: fixed;
+        @media print {
+    /* Estilo para el título principal */
+    h1 {
+        text-align: center; /* Centrar el título */
+        top: 0; /* Ubicar en la parte superior de la página */
+        margin: 0;
+        width: 100%; /* Asegurar que ocupe todo el ancho */
+        background: white; /* Fondo blanco para evitar superposición */
+        z-index: 1000; /* Asegurar que esté encima */
     }
 
-    .usuario {
-        display: flex;
-        border: 1px solid #000; /* Borde exterior igual al de las celdas internas */
-        padding: 0; /* Sin padding para evitar espacio extra */
-        margin: 0; /* Eliminar márgenes */
-        page-break-inside: avoid; /* Evitar saltos de página dentro de un usuario */
+    /* Estilo para el subtítulo */
+    h4 {
+        display: block !important;
+        visibility: visible !important;
+        top: 1.2cm; /* Colocar debajo del h1 */
+        margin: 0;
+    }
+
+     /* Estilo general para los usuarios */
+     .usuario {
+        border: 1px solid #000;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     /* Agregar bordes y estilos para hacer que se vea como una tabla */
@@ -174,47 +186,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         padding: 5px; /* Espacio interno */
     }
 
-    /* Añadir borde inferior entre filas */
-    .usuario:not(:last-child) {
-        border-bottom: none; /* Eliminar borde inferior extra */
+    .usuario:nth-child(n+27) {
+        display: none;
     }
 
-    /* Mostrar el título en la primera página y en la parte superior */
-    h1 {
-        display: block;
-        text-align: center; /* Centrar el título */
-        margin: 0;
-        page-break-before: always 1; /* Asegura que el título esté en la primera página */
-    }
-
-    .boton-container, .actions-container, .no-print {
+    /* Ocultar botones y otros elementos no imprimibles */
+    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn {
         display: none; /* Ocultar botones y elementos no imprimibles */
-    }
-
-    .usuario:first-child {
-        margin-top: 30px; /* Ajustar el margen superior del primer usuario */
-    }
-
-    .usuario:nth-child(26) {
-        page-break-after: always; /* Insertar un salto de página después de cierto número de usuarios */
-    }
-
-    .btn-mapa-morado {
-        display: none; /* Ocultar el botón del mapa en la impresión */
-    }
-    
-    .btn-primary {
-        display: none; /* Ocultar el botón de volver al menu */
-    }
-
-    .remove-btn {
-        display: none; /* Ocultar el botón X */
-    }
-
-    h4 {
-        display: block !important;
-        visibility: visible !important;
-        margin: 0;
     }
 }
     </style>
