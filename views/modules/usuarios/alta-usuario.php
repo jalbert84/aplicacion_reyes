@@ -159,7 +159,7 @@ select.form-control option {
                                 <label for="inputCalle">Calle</label>
                                 <!-- Lista desplegable para seleccionar la calle -->
                                 <select name="calleRegistro" class="form-control" required>
-                                <option value="">SELECCIONE UNA CALLE</option>
+                                <option value="">SELECCIONA UNA CALLE</option>
                             <?php foreach ($calles as $calle) { ?>
                             <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
                             <?php } ?>
@@ -169,12 +169,12 @@ select.form-control option {
 
                             <div class="form-group">
                             <label for="inputNumero">Número y puerta</label>
-                            <input type="text" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Ingrese número y puerta" required>
+                            <input type="text" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Número y puerta" required>
 
                             </div>
                             
                             <div class="form-group">
-                            <label for="inputRegalos">Regalos</label>
+                            <label for="inputRegalos">Bultos</label>
                             <input type="text" id="inputRegalos" name="regalosRegistro" class="form-control" placeholder="Cantidad de bultos" required>
 
                             </div>
