@@ -27,6 +27,7 @@ Conexion::comprobarConexion();
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Reyes Magos - Menú</title>
+    <link rel="icon" href="../views/icons/favicon.ico" type="image/x-icon">
 
     <!-- GLOBAL STYLES -->
     <link href="css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -9,6 +9,7 @@
         <meta name="author" content="Amics del reis d'Alfara">
 
         <title>Recogida de regalos BETA</title>
+        <link rel="icon" href="views/icons/favicon.ico" type="image/x-icon">
 
         <!-- GLOBAL STYLES -->
         <link href="views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
