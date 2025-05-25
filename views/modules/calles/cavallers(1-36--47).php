@@ -13,12 +13,12 @@ if(!$_SESSION["validar"]) {
 // Incluir el controlador de usuarios
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
-// Obtener los usuarios de la calle CavallersLaPau19
+// Obtener los usuarios de la calle cavallers13647
 $usuariosController = new UsuariosController();
-$usuariosCavallersLaPau19 = $usuariosController->obtenerUsuariosPorCalleController("cavallers_la_pau_1_9");
+$usuarioscavallers13647 = $usuariosController->obtenerUsuariosPorCalleController("cavallers13647");
 
 $orden = 1;
-foreach ($usuariosCavallersLaPau19 as &$usuario) {
+foreach ($usuarioscavallers13647 as &$usuario) {
     $usuario['orden'] = $orden; // Asignar un orden inicial basado en el orden en que aparecen los registros
     $orden++;
 }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Actualizar el orden de los usuarios en la base de datos utilizando el controlador
         try {
-            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'cavallerslapau19');
+            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'cavallers13647');
             // Imprimir un script JavaScript para mostrar el mensaje emergente
             echo '<script>alert("Cambios guardados correctamente.");</script>';
             exit(); // Salir del script después de enviar la respuesta
@@ -194,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     /* Ocultar botones y otros elementos no imprimibles */
-    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn {
+    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn, .btn-mapa-azul {
         display: none; /* Ocultar botones y elementos no imprimibles */
     }
 }
@@ -213,21 +213,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" onclick="actualizarNumeros()">Actualizar Posición</button>
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
+    <button class="boton" id="ordenarAutomaticamente" onclick="ordenarAutomaticamente()">Ordenar Automáticamente</button>
     </div>
 
 
-    <?php if (!empty($usuariosCavallersLaPau19)) : ?>
+    <?php if (!empty($usuarioscavallers13647)) : ?>
     <div id="usuarios" class="usuarios-container">
         <?php 
         // Obtener el último usuario
-        $ultimoUsuario = end($usuariosCavallersLaPau19);
+        $ultimoUsuario = end($usuarioscavallers13647);
         
         // Reiniciar el puntero del array
-        reset($usuariosCavallersLaPau19);
+        reset($usuarioscavallers13647);
         
         // Mostrar todos los usuarios excepto el último
-        for ($i = 0; $i < count($usuariosCavallersLaPau19) - 1; $i++) : 
-            $usuario = $usuariosCavallersLaPau19[$i];
+        for ($i = 0; $i < count($usuarioscavallers13647) - 1; $i++) : 
+            $usuario = $usuarioscavallers13647[$i];
         ?>
             <div class="usuario" data-id="<?php echo $usuario['id']; ?>">
                 <div><?php echo $i + 1; ?></div>
@@ -245,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
         <div class="usuario" data-id="<?php echo $ultimoUsuario['id']; ?>">
-            <div><?php echo count($usuariosCavallersLaPau19); ?></div>
+            <div><?php echo count($usuarioscavallers13647); ?></div>
             <?php if (isset($ultimoUsuario['numero'])) : ?>
                 <div><?php echo $ultimoUsuario['numero']; ?></div>
             <?php endif; ?>
@@ -259,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 <?php else : ?>
-    <p>No se encontraron usuarios registrados en la calle CavallersLaPau19.</p>
+    <p>No se encontraron usuarios registrados en la calle cavallers13647.</p>
 <?php endif; ?>
 
 <script>
@@ -330,7 +331,7 @@ function guardarOrdenUsuarios() {
     const usuariosOrdenados = Array.from(usuarios).map(usuario => usuario.getAttribute('data-id'));
     
     // Enviar una solicitud AJAX al servidor con el orden de los usuarios
-    fetch('./cavallers---la-pau---(1-9).php', {
+    fetch('./cavallers(1-36--47).php', {
         method: 'POST',
         body: JSON.stringify({ usuariosOrdenados: usuariosOrdenados }),
         headers: {
@@ -380,6 +381,49 @@ function mostrarMensaje(mensaje) {
         // Eliminar el elemento del DOM después de ocultarlo
         document.body.removeChild(popup);
     }, 3000);
+}
+
+function ordenarAutomaticamente() {
+    const usuariosContainer = document.getElementById('usuarios');
+    const usuarios = Array.from(usuariosContainer.querySelectorAll('.usuario'))
+        .filter(u => u.style.display !== 'none');
+
+    // Crear un mapa con numero => array de divs
+    const mapaUsuarios = {};
+    usuarios.forEach(usuario => {
+        const numero = parseInt(usuario.querySelector('div:nth-child(2)').textContent.trim());
+        if (!mapaUsuarios[numero]) {
+            mapaUsuarios[numero] = [];
+        }
+        mapaUsuarios[numero].push(usuario);
+    });
+
+    // Orden personalizado
+    const ordenPersonalizado = [10, 9, 11, 13, 15, 17, 12, 19, 14, 16, 21, 13, 18, 23, 25, 20, 22, 24, 29, 31, 26, 33, 28, 35, 30, 39, 41, 32, 43, 45, 34, 36, 6, 5, 4, 3, 2, 1];
+
+    // Limpia el contenedor
+    usuariosContainer.innerHTML = '';
+
+    // Añade en orden todos los usuarios que correspondan a cada número
+    let pos = 1;
+    ordenPersonalizado.forEach(numero => {
+        if (mapaUsuarios[numero]) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++; // Reasigna el orden visual
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+
+    // Añade los que no estaban en el patrón (por si acaso hay algún número fuera del patrón)
+    Object.keys(mapaUsuarios).forEach(numero => {
+        if (!ordenPersonalizado.includes(parseInt(numero))) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++;
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
 }
 
 </script>

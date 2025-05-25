@@ -77,7 +77,7 @@ if(!$_SESSION["validar"]) {
             "PLAÇA NOU D’OCTUBRE",
             "SANT DÍDAC",
             "LA SÈQUIA",
-            "CAVALLERS - LA PAU - (1-9)",
+            "CAVALLERS(1-36--47)",
             "VICENT LASSALA"
         ];
 
@@ -96,7 +96,7 @@ if(!$_SESSION["validar"]) {
             "CALVARI",
             "CAVALLERS (10-FINAL)",
             "AUSIÀS MARCH",
-            "PRIMER DE MAIG (19-FINAL)",
+            "PRIMER DE MAIG (49/38 - FINAL)",
             "CAMÍ DE RAFELBUNYOL",
 
         ];

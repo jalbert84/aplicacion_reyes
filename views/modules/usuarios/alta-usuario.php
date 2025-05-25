@@ -10,7 +10,7 @@ $calles = [
     "CALVARI",
     "CAMI DE RAFELBUNYOL",
     "CAVALLERS (10-FINAL)",
-    "CAVALLERS-LA PAU- (1-9)",
+    "CAVALLERS(1-36--47)",
     "DOCTOR NAVARRO",
     "DON EMILIO RAMON LLIN",
     "LA NORIA",
