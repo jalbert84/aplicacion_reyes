@@ -213,6 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" onclick="actualizarNumeros()">Actualizar Posición</button>
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
+    <button class="boton" id="ordenarAutomaticamente" onclick="ordenarAutomaticamente()">Ordenar Automáticamente</button>
     </div>
 
     <?php if (!empty($usuarios8DeMarzo)) : ?>
@@ -390,6 +391,107 @@ function mostrarMensaje(mensaje) {
         // Eliminar el elemento del DOM después de ocultarlo
         document.body.removeChild(popup);
     }, 3000);
+}
+
+// Función para guardar el nuevo orden después de arrastrar y soltar
+function guardarOrdenUsuarios() {
+    const usuarios = document.querySelectorAll('.usuario');
+    const usuariosOrdenados = Array.from(usuarios).map(usuario => usuario.getAttribute('data-id'));
+    
+    // Enviar una solicitud AJAX al servidor con el orden de los usuarios
+    fetch('./bonifaci-ferrer.php', {
+        method: 'POST',
+        body: JSON.stringify({ usuariosOrdenados: usuariosOrdenados }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al guardar el orden de los usuarios.');
+        }
+        return response.text(); // Devolver la respuesta del servidor
+    })
+    .then(data => {
+        console.log(data); // Mostrar la respuesta del servidor en la consola (puedes cambiar esto según tu necesidad)
+        mostrarMensaje('Cambios guardados correctamente.');
+    })
+    .catch(error => {
+        console.error('Error:', error); // Manejar cualquier error que ocurra durante la solicitud AJAX
+    });
+}
+
+
+// Función marcador para actualizar el orden del usuario en el backend
+function actualizarOrdenUsuario(idUsuario, nuevoOrden) {
+    // Esta función no realiza ninguna acción específica en el cliente
+    // Su propósito es indicar la actualización del orden del usuario en el backend
+}
+
+function mostrarMensaje(mensaje) {
+    // Crear un elemento div para el mensaje emergente
+    var popup = document.createElement('div');
+    popup.textContent = mensaje;
+    popup.classList.add('popup');
+    popup.style.color = 'white'; // Establecer el color del texto en blanco
+    popup.style.position = 'absolute'; // Posicionar el mensaje de forma absoluta
+    popup.style.top = '50px'; // Ajustar la posición vertical para que aparezca sobre el título
+    popup.style.left = '50%'; // Centrar horizontalmente el mensaje
+    popup.style.transform = 'translateX(-50%)'; // Centrar horizontalmente el mensaje
+    popup.style.background = 'rgba(0, 0, 0, 0.5)'; // Fondo semitransparente
+    
+    // Agregar el mensaje emergente al cuerpo del documento
+    document.body.appendChild(popup);
+    
+    // Desaparecer el mensaje después de 3 segundos
+    setTimeout(function() {
+        popup.style.display = 'none';
+        // Eliminar el elemento del DOM después de ocultarlo
+        document.body.removeChild(popup);
+    }, 3000);
+}
+
+function ordenarAutomaticamente() {
+    const usuariosContainer = document.getElementById('usuarios');
+    const usuarios = Array.from(usuariosContainer.querySelectorAll('.usuario'))
+        .filter(u => u.style.display !== 'none');
+
+    // Crear un mapa con numero => array de divs
+    const mapaUsuarios = {};
+    usuarios.forEach(usuario => {
+        const numero = parseInt(usuario.querySelector('div:nth-child(2)').textContent.trim());
+        if (!mapaUsuarios[numero]) {
+            mapaUsuarios[numero] = [];
+        }
+        mapaUsuarios[numero].push(usuario);
+    });
+
+    // Orden personalizado
+    const ordenPersonalizado = [6, 4, 2, 1, 3, 5, 8, 7, 10, 9, 12, 11, 14];
+
+    // Limpia el contenedor
+    usuariosContainer.innerHTML = '';
+
+    // Añade en orden todos los usuarios que correspondan a cada número
+    let pos = 1;
+    ordenPersonalizado.forEach(numero => {
+        if (mapaUsuarios[numero]) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++; // Reasigna el orden visual
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+
+    // Añade los que no estaban en el patrón (por si acaso hay algún número fuera del patrón)
+    Object.keys(mapaUsuarios).forEach(numero => {
+        if (!ordenPersonalizado.includes(parseInt(numero))) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++;
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
 }
 
 </script>

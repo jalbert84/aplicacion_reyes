@@ -215,6 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" onclick="actualizarNumeros()">Actualizar Posición</button>
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
+    <button class="boton" id="ordenarAutomaticamente" onclick="ordenarAutomaticamente()">Ordenar Automáticamente</button>
     </div>
 
     <?php if (!empty($usuariosMestrePalau)) : ?>
@@ -390,6 +391,49 @@ function mostrarMensaje(mensaje) {
         // Eliminar el elemento del DOM después de ocultarlo
         document.body.removeChild(popup);
     }, 3000);
+}
+
+function ordenarAutomaticamente() {
+    const usuariosContainer = document.getElementById('usuarios');
+    const usuarios = Array.from(usuariosContainer.querySelectorAll('.usuario'))
+        .filter(u => u.style.display !== 'none');
+
+    // Crear un mapa con numero => array de divs
+    const mapaUsuarios = {};
+    usuarios.forEach(usuario => {
+        const numero = parseInt(usuario.querySelector('div:nth-child(2)').textContent.trim());
+        if (!mapaUsuarios[numero]) {
+            mapaUsuarios[numero] = [];
+        }
+        mapaUsuarios[numero].push(usuario);
+    });
+
+    // Orden personalizado
+    const ordenPersonalizado = [2, 4, 6, 1, 8, 10, 3, 12, 5, 14, 16, 7, 9, 18, 20, 22, 11, 24, 13, 26, 28, 15, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 17];
+
+    // Limpia el contenedor
+    usuariosContainer.innerHTML = '';
+
+    // Añade en orden todos los usuarios que correspondan a cada número
+    let pos = 1;
+    ordenPersonalizado.forEach(numero => {
+        if (mapaUsuarios[numero]) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++; // Reasigna el orden visual
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+
+    // Añade los que no estaban en el patrón (por si acaso hay algún número fuera del patrón)
+    Object.keys(mapaUsuarios).forEach(numero => {
+        if (!ordenPersonalizado.includes(parseInt(numero))) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++;
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
 }
 
 </script>
