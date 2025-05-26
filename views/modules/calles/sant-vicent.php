@@ -194,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     /* Ocultar botones y otros elementos no imprimibles */
-    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn {
+    .boton-container, .actions-container, .no-print, .btn-mapa-morado, .btn-primary, .remove-btn {
         display: none; /* Ocultar botones y elementos no imprimibles */
     }
 }
@@ -213,6 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button class="boton" onclick="actualizarNumeros()">Actualizar Posición</button>
     <button class="boton" id="guardarCambiosButton" onclick="guardarOrdenUsuarios()">Guardar Cambios</button>
     <button class="boton" id="imprimirButton" onclick="imprimirUsuarios()">Imprimir</button>
+    <button class="boton" id="ordenarAutomaticamente" onclick="ordenarAutomaticamente()">Ordenar Automáticamente</button>
     </div>
 
     <?php if (!empty($usuariosSantVicent)) : ?>
