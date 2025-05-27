@@ -393,6 +393,49 @@ function mostrarMensaje(mensaje) {
     }, 3000);
 }
 
+function ordenarAutomaticamente() {
+    const usuariosContainer = document.getElementById('usuarios');
+    const usuarios = Array.from(usuariosContainer.querySelectorAll('.usuario'))
+        .filter(u => u.style.display !== 'none');
+
+    // Crear un mapa con numero => array de divs
+    const mapaUsuarios = {};
+    usuarios.forEach(usuario => {
+        const numero = parseInt(usuario.querySelector('div:nth-child(2)').textContent.trim());
+        if (!mapaUsuarios[numero]) {
+            mapaUsuarios[numero] = [];
+        }
+        mapaUsuarios[numero].push(usuario);
+    });
+
+    // Orden personalizado
+    const ordenPersonalizado = [47, 44, 45, 42, 43, 40, 38, 41, 39, 36, 37, 35, 33, 34, 31, 29, 28, 27, 26, 25, 24, 23, 21, 19, 18, 17, 15, 16, 13, 14, 11, 12, 9, 7, 10, 8, 5, 6, 4, 2];
+
+    // Limpia el contenedor
+    usuariosContainer.innerHTML = '';
+
+    // Añade en orden todos los usuarios que correspondan a cada número
+    let pos = 1;
+    ordenPersonalizado.forEach(numero => {
+        if (mapaUsuarios[numero]) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++; // Reasigna el orden visual
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+
+    // Añade los que no estaban en el patrón (por si acaso hay algún número fuera del patrón)
+    Object.keys(mapaUsuarios).forEach(numero => {
+        if (!ordenPersonalizado.includes(parseInt(numero))) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++;
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+}
+
 </script>
 
 

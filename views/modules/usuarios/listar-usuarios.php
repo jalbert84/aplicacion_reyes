@@ -94,9 +94,9 @@ if(!$_SESSION["validar"]) {
             "BLASCO IBAÑEZ",
             "SANT VICENT",
             "CALVARI",
-            "CAVALLERS (10-FINAL)",
+            "CAVALLERS(38--49-FINAL)",
             "AUSIÀS MARCH",
-            "PRIMER DE MAIG (49/38 - FINAL)",
+            "PRIMER DE MAIG (19-FINAL)",
             "CAMÍ DE RAFELBUNYOL",
 
         ];

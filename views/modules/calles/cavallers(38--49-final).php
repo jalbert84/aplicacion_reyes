@@ -13,12 +13,12 @@ if(!$_SESSION["validar"]) {
 // Incluir el controlador de usuarios
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
-// Obtener los usuarios de la calle Cavallers10Final
+// Obtener los usuarios de la calle cavallers3849Final
 $usuariosController = new UsuariosController();
-$usuariosCavallers10Final = $usuariosController->obtenerUsuariosPorCalleController("cavallers_10_final");
+$usuarioscavallers3849Final = $usuariosController->obtenerUsuariosPorCalleController("cavallers3849final");
 
 $orden = 1;
-foreach ($usuariosCavallers10Final as &$usuario) {
+foreach ($usuarioscavallers3849Final as &$usuario) {
     $usuario['orden'] = $orden; // Asignar un orden inicial basado en el orden en que aparecen los registros
     $orden++;
 }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Actualizar el orden de los usuarios en la base de datos utilizando el controlador
         try {
-            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'cavallers10final');
+            $mensaje = $usuariosController->actualizarOrdenUsuariosController($usuariosOrdenados, 'cavallers3849final');
             // Imprimir un script JavaScript para mostrar el mensaje emergente
             echo '<script>alert("Cambios guardados correctamente.");</script>';
             exit(); // Salir del script después de enviar la respuesta
@@ -217,18 +217,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-    <?php if (!empty($usuariosCavallers10Final)) : ?>
+    <?php if (!empty($usuarioscavallers3849Final)) : ?>
     <div id="usuarios" class="usuarios-container">
         <?php 
         // Obtener el último usuario
-        $ultimoUsuario = end($usuariosCavallers10Final);
+        $ultimoUsuario = end($usuarioscavallers3849Final);
         
         // Reiniciar el puntero del array
-        reset($usuariosCavallers10Final);
+        reset($usuarioscavallers3849Final);
         
         // Mostrar todos los usuarios excepto el último
-        for ($i = 0; $i < count($usuariosCavallers10Final) - 1; $i++) : 
-            $usuario = $usuariosCavallers10Final[$i];
+        for ($i = 0; $i < count($usuarioscavallers3849Final) - 1; $i++) : 
+            $usuario = $usuarioscavallers3849Final[$i];
         ?>
             <div class="usuario" data-id="<?php echo $usuario['id']; ?>">
                 <div><?php echo $i + 1; ?></div>
@@ -246,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endfor; ?>
         <!-- Mostrar el último usuario -->
         <div class="usuario" data-id="<?php echo $ultimoUsuario['id']; ?>">
-            <div><?php echo count($usuariosCavallers10Final); ?></div>
+            <div><?php echo count($usuarioscavallers3849Final); ?></div>
             <?php if (isset($ultimoUsuario['numero'])) : ?>
                 <div><?php echo $ultimoUsuario['numero']; ?></div>
             <?php endif; ?>
@@ -260,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 <?php else : ?>
-    <p>No se encontraron usuarios registrados en la calle Cavallers10Final.</p>
+    <p>No se encontraron usuarios registrados en la calle cavallers3849Final.</p>
 <?php endif; ?>
 
 <script>
@@ -342,7 +342,7 @@ function guardarOrdenUsuarios() {
     const usuariosOrdenados = Array.from(usuarios).map(usuario => usuario.getAttribute('data-id'));
     
     // Enviar una solicitud AJAX al servidor con el orden de los usuarios
-    fetch('./cavallers-(10-final).php', {
+    fetch('./cavallers (38--49-final).php', {
         method: 'POST',
         body: JSON.stringify({ usuariosOrdenados: usuariosOrdenados }),
         headers: {
@@ -392,6 +392,49 @@ function mostrarMensaje(mensaje) {
         // Eliminar el elemento del DOM después de ocultarlo
         document.body.removeChild(popup);
     }, 3000);
+}
+
+function ordenarAutomaticamente() {
+    const usuariosContainer = document.getElementById('usuarios');
+    const usuarios = Array.from(usuariosContainer.querySelectorAll('.usuario'))
+        .filter(u => u.style.display !== 'none');
+
+    // Crear un mapa con numero => array de divs
+    const mapaUsuarios = {};
+    usuarios.forEach(usuario => {
+        const numero = parseInt(usuario.querySelector('div:nth-child(2)').textContent.trim());
+        if (!mapaUsuarios[numero]) {
+            mapaUsuarios[numero] = [];
+        }
+        mapaUsuarios[numero].push(usuario);
+    });
+
+    // Orden personalizado
+    const ordenPersonalizado = [38, 49, 51, 40, 42, 53, 55, 57, 59, 61, 63, 65, 67, 46, 48, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99];
+
+    // Limpia el contenedor
+    usuariosContainer.innerHTML = '';
+
+    // Añade en orden todos los usuarios que correspondan a cada número
+    let pos = 1;
+    ordenPersonalizado.forEach(numero => {
+        if (mapaUsuarios[numero]) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++; // Reasigna el orden visual
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
+
+    // Añade los que no estaban en el patrón (por si acaso hay algún número fuera del patrón)
+    Object.keys(mapaUsuarios).forEach(numero => {
+        if (!ordenPersonalizado.includes(parseInt(numero))) {
+            mapaUsuarios[numero].forEach(usuario => {
+                usuario.querySelector('div:first-child').textContent = pos++;
+                usuariosContainer.appendChild(usuario);
+            });
+        }
+    });
 }
 
 </script>
