@@ -189,12 +189,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         padding: 5px; /* Espacio interno */
     }
 
-    .usuario:nth-child(n+27) {
-        display: none;
-    }
 
     /* Ocultar botones y otros elementos no imprimibles */
-    .boton-container, .actions-container, .no-print, .btn-mapa-amarillo, .btn-primary, .remove-btn {
+    .boton-container, .actions-container, .no-print, .btn-mapa-azul, .btn-primary, .remove-btn {
         display: none; /* Ocultar botones y elementos no imprimibles */
     }
 }

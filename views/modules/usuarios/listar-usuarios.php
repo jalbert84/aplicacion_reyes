@@ -59,8 +59,8 @@ if(!$_SESSION["validar"]) {
             "RAMÓN I CAJAL",
             "TARAZONA",
             "SANT BERTOMEU",
-            "REAL ACEQUIA DE MONCADA",
-            "PUNTARRÓ"
+            "PUNTARRÓ",
+            "REAL ACEQUIA DE MONCADA"
         ];
 
         $calles_amarillo = [

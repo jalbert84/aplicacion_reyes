@@ -1,20 +1,31 @@
 <?php
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/models/db/conexion.php");
 
-class UsuariosController{
+class UsuariosController {
     
-    public function registroUsuarioController($datos){
-        // Insertar los datos del usuario en la base de datos
+    public function registroUsuarioController($datos) {
         $conexion = Conexion::conectar();
         
         // Normalizar el nombre de la calle para usarlo como nombre de tabla
         $tabla = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $datos["calle"]));
         
+        // Verificar si el nombre ya existe en la tabla
+        $stmtCheck = $conexion->prepare("SELECT COUNT(*) FROM $tabla WHERE nombre = :nombre");
+        $stmtCheck->bindParam(":nombre", $datos["nombre"]);
+        $stmtCheck->execute();
+        $nombreExistente = $stmtCheck->fetchColumn();
+
+        if ($nombreExistente > 0) {
+            // Nombre duplicado, mostrar mensaje y salir
+            echo '<script>alert("¡Error! El nombre ya está registrado en esa calle.");</script>';
+            return; // Terminar la función para que no se registre
+        }
+
         // Obtener el número de usuarios actuales en la tabla para determinar el próximo id
         $stmtCount = $conexion->prepare("SELECT COUNT(*) FROM $tabla");
         $stmtCount->execute();
-        $nextId = $stmtCount->fetchColumn() + 1; // El siguiente id es el número de usuarios actuales + 1
-        
+        $nextId = $stmtCount->fetchColumn() + 1;
+
         // Preparar la consulta para insertar los datos en la tabla correspondiente
         $stmt = $conexion->prepare("INSERT INTO $tabla (id, numero, nombre, regalos) VALUES (:id, :numero, :nombre, :regalos)");
         $stmt->bindParam(":id", $nextId);
@@ -22,10 +33,11 @@ class UsuariosController{
         $stmt->bindParam(":nombre", $datos["nombre"]);
         $stmt->bindParam(":regalos", $datos["regalos"]);
         
-        // Ejecutar la consulta
         $stmt->execute();
-    
+
         $_SESSION['registro_exitoso'] = true;
+
+        echo '<script>alert("¡Usuario registrado correctamente!");</script>';
     }
 
 

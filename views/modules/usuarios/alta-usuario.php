@@ -74,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Llamar al método para registrar usuario y pasar los datos
         $registro->registroUsuarioController($datos);
 
-        echo '<script>alert("¡Usuario registrado correctamente!");</script>';
     } else {
         // Si faltan campos, muestra un mensaje de error
         echo '<script>alert("¡Error! Faltan campos obligatorios en el formulario.");</script>';
@@ -197,5 +196,12 @@ select.form-control option {
     <script src="/views/js/plugins/hisrc/hisrc.js"></script>
     <!-- THEME SCRIPTS -->
     <script src="/views/js/flex.js"></script>
+
+    <script>
+    document.querySelector("form").addEventListener("submit", function () {
+    const nombreInput = document.getElementById("inputNombre");
+    nombreInput.value = nombreInput.value.toUpperCase();
+    });
+    </script>
 </body>
 </html>
