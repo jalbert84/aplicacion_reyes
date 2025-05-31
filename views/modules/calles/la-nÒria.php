@@ -410,7 +410,7 @@ function ordenarAutomaticamente() {
     });
 
     // Orden personalizado
-    const ordenPersonalizado = [9, 18, 7, 16, 14, 12, 5, 3, 10, 1, 8, 6, 4, 2, 11, 13, 15, 17, 22, 24, 26, ];
+    const ordenPersonalizado = [9, 18, 7, 16, 14, 12, 5, 3, 10, 1, 8, 6, 4, 2, 11, 13, 15, 17, 22, 24, 26];
 
     // Limpia el contenedor
     usuariosContainer.innerHTML = '';

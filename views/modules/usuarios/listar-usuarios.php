@@ -126,6 +126,15 @@ if(!$_SESSION["validar"]) {
         body {
             background-color: #f8f9fa; /* Cambia el color de fondo del cuerpo */
         }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 20px auto 10px auto; /* más margen arriba y centrado */
+            max-width: 600px;
+        }
+
     </style>
 
 
@@ -138,6 +147,15 @@ if(!$_SESSION["validar"]) {
             <?php echo generarEnlaces($calles_gris, 'default'); ?>
             <?php echo generarEnlaces($calles_morado, 'purple'); ?>
         </div>
+
+<div class="botones">
+    <a href="/views/modules/orden/azul.php" style="background: #007BFF;">Listado</a>
+    <a href="/views/modules/orden/rojo.php" style="background: #DC3545;">Listado</a>
+    <a href="/views/modules/orden/verde.php" style="background: #28A745;">Listado</a>
+    <a href="/views/modules/orden/amarillo.php" style="background: #FFC107; color: black;">Listado</a>
+    <a href="/views/modules/orden/gris.php" style="background: #6C757D;">Listado</a>
+    <a href="/views/modules/orden/morado.php" style="background:rgb(154, 5, 184);">Listado</a>
+</div>
     </div>
 </body>
 </html>
