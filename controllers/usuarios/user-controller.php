@@ -131,6 +131,8 @@ public function editarUsuarioDesdeVista($id, $nuevoNumero, $nuevoNombre, $nuevos
     'cavallers13647',
     'doctornavarro',
     'donemilioramonllin',
+    'donpedrotortajada',
+    'joaquinsorolla',
     'lanoria',
     'lasequia',
     'major',

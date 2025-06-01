@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Carrer 8 de març</title>
+    <title>Carrer Mestre Serrano</title>
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="/../views/modules/mapas/mapa-gris.php" class="btn btn-gris-oscuro">Mapa</a>
     </div>
 
-    <h1>Carrer 8 de març</h1>
+    <h1>Carrer Mestre Serrano</h1>
     <button id="guardar" class="btn btn-success">Guardar cambios</button>
     <?php if (!empty($usuariosmestreserrano)) : ?>
         <div id="usuarios">

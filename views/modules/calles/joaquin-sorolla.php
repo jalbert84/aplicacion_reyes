@@ -7,7 +7,7 @@ if (!$_SESSION["validar"]) {
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
 $usuariosController = new UsuariosController();
-$usuariosplazalacreu = $usuariosController->obtenerUsuariosPorCalleController("plazalacreu");
+$usuariosjoaquinsorolla = $usuariosController->obtenerUsuariosPorCalleController("joaquinsorolla");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Plaça La Creu</title>
+    <title>Carrer Joaquín Sorolla</title>
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -66,6 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: block;
             margin: 30px auto;
         }
+                .btn-gris-oscuro {
+            background-color: #343a40; /* gris oscuro */
+            color: white;
+            border: none;
+        }
+        .btn-gris-oscuro:hover {
+            background-color: #23272b;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -73,14 +82,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="botones">
         <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary">Volver al listado de calles</a>
         <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
-        <a href="/../views/modules/mapas/mapa-verde.php" class="btn btn-success">Mapa</a>
+        <a href="/../views/modules/mapas/mapa-gris.php" class="btn btn-gris-oscuro">Mapa</a>
     </div>
 
-    <h1>Plaça La Creu</h1>
+    <h1>Carrer Joaquín Sorolla</h1>
     <button id="guardar" class="btn btn-success">Guardar cambios</button>
-    <?php if (!empty($usuariosplazalacreu)) : ?>
+    <?php if (!empty($usuariosjoaquinsorolla)) : ?>
         <div id="usuarios">
-            <?php foreach ($usuariosplazalacreu as $usuario): ?>
+            <?php foreach ($usuariosjoaquinsorolla as $usuario): ?>
                 <div class="usuario" data-id="<?= $usuario['id'] ?>">
                     <input type="text" name="numero" value="<?= htmlspecialchars($usuario['numero']) ?>">
                     <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>">
