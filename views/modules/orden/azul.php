@@ -37,18 +37,20 @@ foreach ($calles as $calle) {
         padding: 5px 10px;
         border-bottom: 5px solid #ddd;
         align-items: center;
+        white-space: nowrap; /* evita que el texto se parta en varias líneas */
+        text-overflow: ellipsis; /* agrega "..." si el texto es muy largo */
     }
     .usuario div {
         padding: 0 5px;
     }
     .usuario div.numero {
-        width: 50px; 
+        width: 80px; 
         flex: none;
         display: flex;
         justify-content: center;
     }
     .usuario div.numero input {
-        width: 40px;
+        width: 50px;
         border: 1px solid #999;
         padding: 3px 5px;
         font-size: 16px;
@@ -60,7 +62,7 @@ foreach ($calles as $calle) {
         text-align: center;
     }
     .usuario div.bultos {
-        width: 80px; 
+        width: 110px; 
         flex: none;
         text-align: center;
     }

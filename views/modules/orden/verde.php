@@ -10,7 +10,7 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/co
 $usuariosController = new UsuariosController();
 
 // Cambia estos nombres por todas las calles que quieras mostrar
-$calles = ["plaza_sant_joan_de_ribera", "plaza_antic_regne_de_valencia", "doctor_navarro", "major", "don_emilio_ramon_llin", "major", "assegadors", "major", "rajolars", "major", "mestre_serrano"];
+$calles = ["valencia", "plaza_la_creu", "doctor_navarro", "don_emilio_ramon_llin", "santa_barbera"];
 
 $usuariosPorCalle = [];
 foreach ($calles as $calle) {
@@ -40,18 +40,20 @@ foreach ($calles as $calle) {
         padding: 5px 10px;
         border-bottom: 5px solid #ddd;
         align-items: center;
+        white-space: nowrap; /* evita que el texto se parta en varias líneas */
+        text-overflow: ellipsis; /* agrega "..." si el texto es muy largo */
     }
     .usuario div {
         padding: 0 5px;
     }
     .usuario div.numero {
-        width: 50px; 
+        width: 80px; 
         flex: none;
         display: flex;
         justify-content: center;
     }
     .usuario div.numero input {
-        width: 40px;
+        width: 50px;
         border: 1px solid #999;
         padding: 3px 5px;
         font-size: 16px;
@@ -63,7 +65,7 @@ foreach ($calles as $calle) {
         text-align: center;
     }
     .usuario div.bultos {
-        width: 80px; 
+        width: 110px; 
         flex: none;
         text-align: center;
     }
@@ -107,7 +109,7 @@ foreach ($usuariosPorCalle as $index => $datos) {
     </div>
 <?php } ?>
 
-<button onclick="window.print()">Imprimir listado completo</button>
+<button onclick="window.print()">Imprimir listado completos</button>
 <button onclick="ordenarTodasCalles()">Ordenar todas las calles</button>
 
 
@@ -115,18 +117,11 @@ foreach ($usuariosPorCalle as $index => $datos) {
     function ordenarTodasCalles() {
     // Definimos el orden personalizado para cada calle
     const ordenesPorCalle = {
-        "plaza_sant_joan_de_ribera_1": [1, 6, 7, 10, 9, 8],
-        "plaza_antic_regne_de_valencia_1": [7, 8, 9, 10, 11, 12, 13, 14, 6, 5, 4, 3, 2, 1],
-        "doctor_navarro_1": [46, 27, 48],
-        "major_1": [1, 2, 3, 4, 5, 7, 6, 8, 9, 11, 10, 13, 12, 17, 14, 15],
-        "don_emilio_ramon_llin_1": [36, 53, 38, 55, 59, 61, 63],
-        "major_2": [16, 17, 19, 21, 18, 20, 23, 22, 27, 29, 24, 30, 31, 26, 33, 28, 30, 35, 32, 34, 36, 37, 38, 39, 40, 41, 43, 42, 45, 47, 44, 49, 51, 46, 48, 53, 50, 52, 57, 54, 56, 58, 60, 62], 
-        "assegadors_1": [1, 2, 3, 4, 5, 6],
-        "major_3": [64, 66, 68, 70, 72],
-        "rajolars_1": [1, 3, 5],
-        "major_4": [76, 78],
-        "mestre_serrano": [15, 17],
-        "major_5": [82, 84, 86, 88]
+        "valencia_1": [2, 1, 4, 3, 6, 5, 7, 8, 10, 9, 11, 12, 13, 14],
+        "plaza_la_creu_1": [5, 6, 7, 1, 2, 3, 4],
+        "doctor_navarro_1": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 7, 22, 9, 24, 11, 26, 13, 15, 28, 30, 32, 34, 36, 38, 17, 19, 42],
+        "don_emilio_ramon_llin_1": [34, 51, 49, 32, 45, 43, 41, 39, 37, 35, 33, 31, 28, 29, 27, 26, 25, 24, 23, 22, 21, 19, 20, 18, 17, 15, 16, 13, 14, 11, 12, 10, 9, 7, 8, 5, 6, 3, 4, 1, 2],
+        "santa_barbera_1": [47, 44, 45, 42, 43, 40, 38, 41, 39, 36, 37, 35, 33, 34, 31, 29, 28, 27, 26, 25, 24, 23, 21, 19, 18, 17, 15, 16, 13, 14, 11, 12, 9, 7, 10, 8, 5, 6, 4, 2]
     };
 
     const contenedores = document.querySelectorAll('.usuarios-listado');

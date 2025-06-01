@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Alta de Usuario</title>
+    <title>Alta d'Usuari</title>
 
     <!-- GLOBAL STYLES -->
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -131,7 +131,7 @@ select.form-control option {
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-title">
-                <h1 class="text-center" style="color: white;">Alta de Usuario</h1>
+                <h1 class="text-center" style="color: white;">Alta d'Usuari</h1>
                 </div>
             </div>
             <!-- /.col-lg-12 -->
@@ -141,7 +141,7 @@ select.form-control option {
             <div class="portlet portlet-default">
                 <div class="portlet-heading">
                     <div class="portlet-title">
-                        <h4>FORMULARIO DE REGISTRO</h4>
+                        <h4>FORMULARI DE REGISTRE</h4>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -150,15 +150,15 @@ select.form-control option {
                     <div class="portlet-body">
                         <form role="form" method="post">
                             <div class="form-group">
-                            <label for="inputNombre">Nombre de referencia</label>
-                            <input type="text" id="inputNombre" name="nombreRegistro" class="form-control" placeholder="Nombre y apellido" required>
+                            <label for="inputNombre">NOM DE REGISTRE</label>
+                            <input type="text" id="inputNombre" name="nombreRegistro" class="form-control" placeholder="Nom i cognom" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="inputCalle">Calle</label>
+                                <label for="inputCalle">CARRER</label>
                                 <!-- Lista desplegable para seleccionar la calle -->
                                 <select name="calleRegistro" class="form-control" required>
-                                <option value="">SELECCIONA UNA CALLE</option>
+                                <option value="">SELECCIONA UNA CARRER</option>
                             <?php foreach ($calles as $calle) { ?>
                             <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
                             <?php } ?>
@@ -167,25 +167,25 @@ select.form-control option {
 
 
                             <div class="form-group">
-                            <label for="inputNumero">Número y puerta</label>
-                            <input type="text" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Número y puerta" required>
+                            <label for="inputNumero">NÚMERO I PORTA</label>
+                            <input type="text" id="inputNumero" name="numeroRegistro" class="form-control" placeholder="Número i porta" required>
 
                             </div>
                             
                             <div class="form-group">
-                            <label for="inputRegalos">Bultos</label>
-                            <input type="text" id="inputRegalos" name="regalosRegistro" class="form-control" placeholder="Cantidad de bultos" required>
+                            <label for="inputRegalos">EMBALUMS</label>
+                            <input type="text" id="inputRegalos" name="regalosRegistro" class="form-control" placeholder="Quantitat d'embalumns" required>
 
                             </div>
 
-                            <button type="submit" class="btn btn-default">Guardar registro</button>
+                            <button type="submit" class="btn btn-default">GUARDAR REGISTRE</button>
                         </form>
                     </div>
                 </div>
             </div>
             <!-- /.portlet -->
         </div>
-        <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
+        <a href="/views/dashboard.php" class="btn btn-primary">Tornar al menú</a>
     </div>
 
     <!-- GLOBAL SCRIPTS -->

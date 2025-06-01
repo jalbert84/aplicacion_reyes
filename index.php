@@ -8,7 +8,7 @@
         <meta name="description" content="Gestión de la recogida de regalos">
         <meta name="author" content="Amics del reis d'Alfara">
 
-        <title>Recogida de regalos BETA</title>
+        <title>Recogida de regalos 1.0</title>
         <link rel="icon" href="views/icons/favicon.ico" type="image/x-icon">
 
         <!-- GLOBAL STYLES -->

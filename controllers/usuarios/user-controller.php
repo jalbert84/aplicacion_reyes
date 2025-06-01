@@ -113,26 +113,76 @@ public function buscarUsuarioController($nombre) {
     return $usuarios;
 }
 
-public function modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos) {
+public function editarUsuarioDesdeVista($id, $nuevoNumero, $nuevoNombre, $nuevosRegalos) {
     try {
-        // Verificar que los datos recibidos sean válidos
-        if ($usuario !== "" && $calle !== "" && $nuevoNombre !== "" && $nuevoNumero !== "" && $nuevosRegalos !== "") {
-            // Realizar la modificación en la base de datos
-            $query = "UPDATE $calle SET nombre = :nuevoNombre, numero = :nuevoNumero, regalos = :nuevosRegalos WHERE nombre = :usuario";
+        if ($id !== "" && $nuevoNombre !== "" && $nuevoNumero !== "" && $nuevosRegalos !== "") {
+            // Buscar en qué tabla está el usuario
             $db = Conexion::conectar();
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':nuevoNombre', $nuevoNombre);
-            $stmt->bindParam(':nuevoNumero', $nuevoNumero);
-            $stmt->bindParam(':nuevosRegalos', $nuevosRegalos);
-            $stmt->bindParam(':usuario', $usuario);
-            $stmt->execute();
+            $calles = [
+    '8demarzo',
+    'antonioespolio',
+    'assegadors',
+    'ausiasmarch',
+    'blascoibanyez',
+    'bonifaciferrer',
+    'calvari',
+    'camiderafelbunyol',
+    'cavallers3849final',
+    'cavallers13647',
+    'doctornavarro',
+    'donemilioramonllin',
+    'lanoria',
+    'lasequia',
+    'major',
+    'mestrepalau',
+    'mestreserrano',
+    'plazaanticregnedevalencia',
+    'plazalacreu',
+    'plazanoudoctubre',
+    'plazasantjoanderibera',
+    'poetaricardovalero',
+    'primerdemaig18',
+    'primerdemaig19final',
+    'puntarro',
+    'rajolars',
+    'ramonicajal',
+    'realacequiademoncada',
+    'santabarbera',
+    'santbertomeu',
+    'santdidac',
+    'santvicent',
+    'tarazona',
+    'tirantloblanc',
+    'valencia',
+    'vicentlassala'
+];
 
-            return "Usuario modificado correctamente.";
+
+            foreach ($calles as $calle) {
+                $query = "SELECT id FROM $calle WHERE id = :id";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+                    // Si existe, actualiza
+                    $update = "UPDATE $calle SET numero = :numero, nombre = :nombre, regalos = :regalos WHERE id = :id";
+                    $updateStmt = $db->prepare($update);
+                    $updateStmt->bindParam(':numero', $nuevoNumero);
+                    $updateStmt->bindParam(':nombre', $nuevoNombre);
+                    $updateStmt->bindParam(':regalos', $nuevosRegalos);
+                    $updateStmt->bindParam(':id', $id);
+                    $updateStmt->execute();
+                    return true;
+                }
+            }
+
+            return false; // No encontrado en ninguna tabla
         } else {
-            return "No se recibieron todos los datos necesarios para modificar al usuario.";
+            return false;
         }
     } catch (PDOException $e) {
-        return "Error al modificar al usuario: " . $e->getMessage();
+        throw new Exception("Error al modificar al usuario: " . $e->getMessage());
     }
 }
 
