@@ -37,7 +37,7 @@ class UsuariosController {
 
         $_SESSION['registro_exitoso'] = true;
 
-        echo '<script>alert("¡Usuario registrado correctamente!");</script>';
+        echo '<script>alert("Usuari registrat correctament!");</script>';
     }
 
 
@@ -70,7 +70,7 @@ class UsuariosController {
         if ($result) {
             return true; // Usuario eliminado correctamente
         } else {
-            return "Error al eliminar el usuario."; // Mensaje de error
+            return "Error al eliminar l'usuari."; // Mensaje de error
         }
     }
     
@@ -252,12 +252,12 @@ public function actualizarOrdenUsuariosController($usuariosOrdenados, $nombreTab
         $conexion->commit();
 
         // Devolver un mensaje de éxito
-        return "El orden de los usuarios ha sido actualizado correctamente.";
+        return "L'ordre dels usuaris ha sigut actualitzat correctament.";
     } catch (PDOException $e) {
         $conexion->rollBack();
-        throw new Exception("Error al actualizar el orden de los usuarios: " . $e->getMessage());
+        throw new Exception("Error al actualitzar l'ordre dels usuaris: " . $e->getMessage());
     } catch (Exception $e) {
-        throw new Exception("Error al actualizar el orden de los usuarios: " . $e->getMessage());
+        throw new Exception("Error al actualitzar l'ordre dels usuaris: " . $e->getMessage());
     }
 }
 

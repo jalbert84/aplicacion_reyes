@@ -80,13 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="botones">
-        <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary">Volver al listado de calles</a>
-        <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
+        <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary">Tornar al llistat de carrers</a>
+        <a href="/views/dashboard.php" class="btn btn-primary">Tornar al menú</a>
         <a href="/../views/modules/mapas/mapa-gris.php" class="btn btn-gris-oscuro">Mapa</a>
     </div>
 
     <h1>Plaça Sant Joan de Ribera</h1>
-    <button id="guardar" class="btn btn-success">Guardar cambios</button>
+    <button id="guardar" class="btn btn-success">Guardar canvis</button>
     <?php if (!empty($usuariosplazasantjoanderibera)) : ?>
         <div id="usuarios">
             <?php foreach ($usuariosplazasantjoanderibera as $usuario): ?>
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p>No se encontraron usuarios en esta calle.</p>
+        <p>No es trobaren usuaris en este carrer.</p>
     <?php endif; ?>
 
 <script>
@@ -120,7 +120,7 @@ document.getElementById("guardar").addEventListener("click", () => {
     .then(r => r.json())
     .then(resp => {
         if (resp.success) {
-            alert("Cambios guardados correctamente.");
+            alert("Canvis guardats correctament.");
         } else {
             alert("Error: " + (resp.error || "desconocido"));
         }

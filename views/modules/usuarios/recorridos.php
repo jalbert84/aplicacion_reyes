@@ -45,10 +45,10 @@ if(!$_SESSION["validar"]) {
 <body>
 
     <div class="container">
-        <a href="../../dashboard.php" class="btn btn-lg btn-primary">Volver al menú</a>
+        <a href="../../dashboard.php" class="btn btn-lg btn-primary">Tornar al menú</a>
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Recorridos</h1>
+                <h1 class="text-center">Recorreguts</h1>
                 <div class="text-center">
                     <!-- Botones de recorridos -->
                     <a href="../mapas/mapa-gris.php" class="btn btn-lg btn-default">Rei 1</a>

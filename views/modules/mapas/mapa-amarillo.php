@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Amarillo</title>
+    <title>Mapa Groc</title>
     <style>
         /* Estilos para el contenedor principal */
         body, html {
@@ -33,7 +33,7 @@
             left: 0;
         }
 
-        /* Estilo del botón para volver a la página de recorridos */
+        /* Estilo del botón para Tornar a la página de recorridos */
         .back-button {
             position: fixed;
             top: 20px;
@@ -57,8 +57,8 @@
 </head>
 <body>
 
-        <!-- Botón para volver a la página de recorridos -->
-        <button class="back-button" onclick="window.location.href = 'javascript:history.back()'">Volver a atrás</button>
+        <!-- Botón para Tornar a la página de recorridos -->
+        <button class="back-button" onclick="window.location.href = 'javascript:history.back()'">Tornar arrere</button>
 
     <!-- Contenedor principal del mapa -->
     <div id="map-container">

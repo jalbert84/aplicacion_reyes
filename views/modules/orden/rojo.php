@@ -25,8 +25,8 @@ foreach ($calles as $calle) {
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<div class="noprint"><a href="/../views/modules/usuarios/listar-usuarios.php">↩ Volver</a></div>
-<title>Listado completo de usuarios por calles</title>
+<div class="noprint"><a href="/../views/modules/usuarios/listar-usuarios.php">↩ Tornar</a></div>
+<title>llistat complet de usuarios por calles</title>
 <style>
     body { font-family: Arial, sans-serif; background: white; color: black; }
     h1, h2 { text-align: center; }
@@ -80,7 +80,7 @@ foreach ($calles as $calle) {
 </head>
 <body>
 
-<h1>Listado completo Recorrido ROJO</h1>
+<h1>llistat complet Recorregut ROIG</h1>
 
 <?php
 $repeticiones = [];
@@ -95,8 +95,8 @@ foreach ($usuariosPorCalle as $index => $datos) {
     $claveCalle = $calle . '_' . $repeticiones[$calle];
 ?>
     <div class="calle-container">
-        <h2>Calle: <?php echo ucwords(str_replace('_', ' ', $calle)); ?></h2>
-        <div class="usuarios-listado" data-calle="<?php echo $claveCalle; ?>">
+        <h2>Carrer: <?php echo ucwords(str_replace('_', ' ', $calle)); ?></h2>
+        <div class="usuarios-llistat" data-calle="<?php echo $claveCalle; ?>">
             <?php foreach ($datos['usuarios'] as $usuario) : ?>
                 <div class="usuario">
                     <div class="numero"><input type="text" /></div>
@@ -109,7 +109,7 @@ foreach ($usuariosPorCalle as $index => $datos) {
     </div>
 <?php } ?>
 
-<button onclick="window.print()">Imprimir listado completo</button>
+<button onclick="window.print()">Imprimir llistat complet</button>
 <button onclick="ordenarTodasCalles()">Ordenar todas las calles</button>
 
 
@@ -125,7 +125,7 @@ foreach ($usuariosPorCalle as $index => $datos) {
         "real_acequia_de_moncada_1": [21, 20, 19, 18, 17, 16, 15, 14, 14, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     };
 
-    const contenedores = document.querySelectorAll('.usuarios-listado');
+    const contenedores = document.querySelectorAll('.usuarios-llistat');
 
     contenedores.forEach(container => {
         const calle = container.getAttribute('data-calle');

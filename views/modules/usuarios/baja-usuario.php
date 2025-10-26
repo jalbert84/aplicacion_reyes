@@ -33,15 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Verificar el resultado de la operación
                 if ($resultado === true) {
-                    $_SESSION['mensaje'] = "Usuario eliminado correctamente.";
+                    $_SESSION['mensaje'] = "Usuari eliminat correctament.";
                 } else {
                     $_SESSION['mensaje'] = $resultado; // Mensaje de error
                 }
             } else {
-                $_SESSION['mensaje'] = "ESO QUE HAS ESRITO NO LO TENGO. ";
+                $_SESSION['mensaje'] = "L'USUARI ESCRIT NO ES TROBA A LA BASE DE DADES";
             }
         } else {
-            $_SESSION['mensaje'] = "Por favor, proporcione el nombre y calle del usuario a dar de baja.";
+            $_SESSION['mensaje'] = "Per favor, proporcione el nom i carrer de l'usuari a donar de baixa.";
         }
     }
 }
@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-title">
-                <h1 class="text-center" style="color: white;">Baja de Usuario</h1>
-                <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
+                <h1 class="text-center" style="color: white;">Baixa d'Usuari</h1>
+                <a href="/views/dashboard.php" class="btn btn-primary">Tornar al menú</a>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="portlet portlet-default">
                 <div class="portlet-heading">
                     <div class="portlet-title">
-                        <h4>Formulario de baja de usuario</h4>
+                        <h4>Formulari de baixa d'usuari</h4>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -91,19 +91,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="portlet-body">
                         <form role="form" method="post">
                             <div class="form-group">
-                                <label for="inputUsuario">Nombre</label>
-                                <input type="text" name="nombreBaja" class="form-control" placeholder="Ingrese el nombre del usuario a dar de baja" required>
+                                <label for="inputUsuario">Nom</label>
+                                <input type="text" name="nombreBaja" class="form-control" placeholder="Escriu el nom d'usuari a donar de baixa" required>
                             </div>
                             <div class="form-group">
-                                <label for="inputCalle">Calle</label>
+                                <label for="inputCalle">Carrer</label>
                                 <select name="calleBaja" class="form-control" required>
-                                    <option value="">Seleccione la calle</option>
+                                    <option value="">Seleccione el carrer</option>
                                     <?php foreach ($calles as $calle) { ?>
                                         <option value="<?php echo $calle; ?>"><?php echo $calle; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-default">Dar de baja</button>
+                            <button type="submit" class="btn btn-default">Donar de baixa</button>
                         </form>
                     </div>
                 </div>

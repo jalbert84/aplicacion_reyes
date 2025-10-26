@@ -1,5 +1,5 @@
 <?php
-// Lista de calles de Alfara del Patriarca
+// Llista de carrers de Alfara del Patriarca
 $calles = [
     "8 DE MARZO",
     "ANTONIO ESPOLIO",
@@ -58,11 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["nombreRegistro"]) && isset($_POST["calleRegistro"]) && isset($_POST["numeroRegistro"]) && isset($_POST["regalosRegistro"])) {
         // Capturar los datos del formulario
         $datos = array(
-            "nombre" => $_POST["nombreRegistro"],
-            "calle" => $_POST["calleRegistro"],
-            "numero" => $_POST["numeroRegistro"],
-            "regalos" => $_POST["regalosRegistro"]
-            // Agrega aquí más campos si los necesitas
+        "nombre" => strtoupper(trim(htmlspecialchars($_POST["nombreRegistro"], ENT_QUOTES, 'UTF-8'))),
+        "calle" => strtoupper(trim(htmlspecialchars($_POST["calleRegistro"], ENT_QUOTES, 'UTF-8'))),
+        "numero" => strtoupper(trim(htmlspecialchars($_POST["numeroRegistro"], ENT_QUOTES, 'UTF-8'))),
+        "regalos" => strtoupper(trim(htmlspecialchars($_POST["regalosRegistro"], ENT_QUOTES, 'UTF-8')))
         );
 
         // Incluir el controlador de usuarios
@@ -108,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-group input, .form-group select {
             font-size: 1.5em; /* Tamaño de texto de los campos */
             padding: 25px; /* Más espacio interno */
+            text-transform: uppercase;
         }
         h1 {
             font-size: 2.5em;
@@ -156,7 +156,7 @@ select.form-control option {
 
                             <div class="form-group">
                                 <label for="inputCalle">CARRER</label>
-                                <!-- Lista desplegable para seleccionar la calle -->
+                                <!-- Llista desplegable para seleccionar la calle -->
                                 <select name="calleRegistro" class="form-control" required>
                                 <option value="">SELECCIONA UNA CARRER</option>
                             <?php foreach ($calles as $calle) { ?>
@@ -198,9 +198,10 @@ select.form-control option {
     <script src="/views/js/flex.js"></script>
 
     <script>
-    document.querySelector("form").addEventListener("submit", function () {
-    const nombreInput = document.getElementById("inputNombre");
-    nombreInput.value = nombreInput.value.toUpperCase();
+        document.querySelectorAll("input[type='text']").forEach(input => {
+        input.addEventListener("input", e => {
+        e.target.value = e.target.value.toUpperCase();
+        });
     });
     </script>
 </body>

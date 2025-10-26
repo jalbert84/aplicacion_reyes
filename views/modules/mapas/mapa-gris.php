@@ -36,7 +36,7 @@
             transform: translateX(-50%); /* Centrar la imagen horizontalmente */
         }
 
-        /* Estilo del botón para volver a la página de recorridos */
+        /* Estilo del botón para Tornar a la página de recorridos */
         .back-button {
             position: fixed;
             top: 20px;
@@ -58,8 +58,8 @@
     </style>
 </head>
 <body>
-    <!-- Botón para volver a la página de recorridos -->
-    <button class="back-button" onclick="window.location.href = 'javascript:history.back()'">Volver a atrás</button>
+    <!-- Botón para Tornar a la página de recorridos -->
+    <button class="back-button" onclick="window.location.href = 'javascript:history.back()'">Tornar arrere</button>
 
     <!-- Contenedor principal del mapa -->
     <div id="map-container">

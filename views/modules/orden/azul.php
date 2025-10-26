@@ -22,8 +22,8 @@ foreach ($calles as $calle) {
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<div class="noprint"><a href="/../views/modules/usuarios/listar-usuarios.php">↩ Volver</a></div>
-<title>Listado completo de usuarios por calles</title>
+<div class="noprint"><a href="/../views/modules/usuarios/listar-usuarios.php">↩ Tornar</a></div>
+<title>llistat complet de usuarios por calles</title>
 <style>
     body { font-family: Arial, sans-serif; background: white; color: black; }
     h1, h2 { text-align: center; }
@@ -77,12 +77,12 @@ foreach ($calles as $calle) {
 </head>
 <body>
 
-<h1>Listado completo Recorrido AZUL</h1>
+<h1>llistat complet Recorregut BLAU</h1>
 
 <?php foreach($usuariosPorCalle as $calle => $usuarios): ?>
     <div class="calle-container">
-        <h2>Calle: <?php echo ucwords(str_replace('_', ' ', $calle)); ?></h2>
-        <div class="usuarios-listado" data-calle="<?php echo $calle; ?>">
+        <h2>Carrer: <?php echo ucwords(str_replace('_', ' ', $calle)); ?></h2>
+        <div class="usuarios-llistat" data-calle="<?php echo $calle; ?>">
             <?php foreach ($usuarios as $usuario) : ?>
                 <div class="usuario">
                     <div class="numero">
@@ -97,7 +97,7 @@ foreach ($calles as $calle) {
     </div>
 <?php endforeach; ?>
 
-<button onclick="window.print()">Imprimir listado completo</button>
+<button onclick="window.print()">Imprimir llistat complet</button>
 <button onclick="ordenarTodasCalles()">Ordenar todas las calles</button>
 
 
@@ -114,7 +114,7 @@ foreach ($calles as $calle) {
         "cavallers_1_36_47": [10, 9, 11, 13, 15, 17, 12, 19, 14, 16, 21, 13, 18, 23, 25, 20, 22, 24, 29, 31, 26, 33, 28, 35, 30, 39, 41, 32, 43, 45, 34, 36, 6, 5, 4, 3, 2, 1]
     };
 
-    const contenedores = document.querySelectorAll('.usuarios-listado');
+    const contenedores = document.querySelectorAll('.usuarios-llistat');
 
     contenedores.forEach(container => {
         const calle = container.getAttribute('data-calle');

@@ -46,13 +46,13 @@ Conexion::comprobarConexion();
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center" style="color: white;">Recogida regalos Reyes Magos</h1>
+            <h1 class="text-center" style="color: white;">Recollida regals Reis Mags Alfara</h1>
             <div class="text-center">
-                <a href="modules/usuarios/alta-usuario.php" class="btn btn-lg btn-primary">Alta de Usuario</a>
-                <a href="modules/usuarios/baja-usuario.php" class="btn btn-lg btn-primary">Baja de Usuario</a>
+                <a href="modules/usuarios/alta-usuario.php" class="btn btn-lg btn-primary">Alta d'Usuari</a>
+                <a href="modules/usuarios/baja-usuario.php" class="btn btn-lg btn-primary">Baixa d'Usuari</a>
                 <!-- <a href="modules/usuarios/modi-usuario.php" class="btn btn-lg btn-primary">Modificar Usuario</a> -->
-                <a href="modules/usuarios/listar-usuarios.php" class="btn btn-lg btn-primary">Orden de reparto</a>
-                <a href="modules/usuarios/recorridos.php" class="btn btn-lg btn-primary">Recorridos</a>
+                <a href="modules/usuarios/listar-usuarios.php" class="btn btn-lg btn-primary">Ordre de repartiment</a>
+                <a href="modules/usuarios/recorridos.php" class="btn btn-lg btn-primary">Recorreguts</a>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@ Conexion::comprobarConexion();
     <script src="js/flex.js"></script>
 </body>
 
-<button type="button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i> Log Out</button>
+<button type="button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i> Eixir</button>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -15,7 +15,7 @@
 
 
 <?php
-// Lista de calles de Alfara del Patriarca
+// Llista de carrers de Alfara del Patriarca
 $calles = [
     "ANTONIO_ESPOLIO",
     "ASSEGADORS",
@@ -83,7 +83,7 @@ if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) &&
     // Llamar al método del controlador para modificar los datos del usuario
     require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
     $controlador = new UsuariosController();
-    $resultado = $controlador->modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos);
+   // $resultado = $controlador->modificarUsuarioController($usuario, $calle, $nuevoNombre, $nuevoNumero, $nuevosRegalos);
 
     // Mostrar mensaje de alerta con el resultado
     echo "<script>showAlert('$resultado');</script>";
@@ -122,7 +122,7 @@ if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) &&
             <div class="col-lg-12">
                 <div class="page-title">
         <h1 class="text-center" style="color: white;">Modificación de Usuario</h1>
-        <a href="/views/dashboard.php" class="btn btn-primary">Volver al menú</a>
+        <a href="/views/dashboard.php" class="btn btn-primary">Tornar al menú</a>
         </div>
     </div>
     <!-- /.col-lg-12 -->
@@ -148,7 +148,7 @@ if (isset($_POST["nombreModificacion"]) && isset($_POST["calleModificacion"]) &&
     <div class="form-group">
                         <label for="inputCalle">Calle</label>
 
-                        <!-- Lista desplegable para seleccionar la calle -->
+                        <!-- Llista desplegable para seleccionar la calle -->
                         <select name="calleModificacion" class="form-control" required>
                         <option value="">Seleccione una calle</option>
                         <?php foreach ($calles as $calle) { ?>
