@@ -10,7 +10,7 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/co
 $usuariosController = new UsuariosController();
 
 // Cambia estos nombres por todas las calles que quieras mostrar
-$calles = ["tirant_lo_blanc", "ramon_i_cajal", "tarazona", "sant_bertomeu", "puntarro", "real_acequia_de_moncada"];
+$calles = ["tirant_lo_blanc", "ramon_i_cajal", "tarazona", "sant_bertomeu", "don_pedro_tortajada", "puntarro", "real_acequia_de_moncada"];
 
 $usuariosPorCalle = [];
 foreach ($calles as $calle) {

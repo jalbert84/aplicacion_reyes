@@ -13,6 +13,7 @@ $calles = [
     "CAVALLERS(1-36--47)",
     "DOCTOR NAVARRO",
     "DON EMILIO RAMON LLIN",
+    "DON PEDRO TORTAJADA",
     "LA NORIA",
     "LA SEQUIA",
     "MAJOR",

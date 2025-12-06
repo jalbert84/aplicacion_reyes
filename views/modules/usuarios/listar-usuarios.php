@@ -59,6 +59,7 @@ if(!$_SESSION["validar"]) {
             "RAMÓN I CAJAL",
             "TARAZONA",
             "SANT BERTOMEU",
+            "DON PEDRO TORTAJADA",
             "PUNTARRÓ",
             "REAL ACEQUIA DE MONCADA"
         ];
