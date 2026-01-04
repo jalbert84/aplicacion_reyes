@@ -7,7 +7,7 @@ if (!$_SESSION["validar"]) {
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
 $usuariosController = new UsuariosController();
-$usuariosantonioespolio = $usuariosController->obtenerUsuariosPorCalleController("antonioespolio");
+$usuariosdoctornavarro = $usuariosController->obtenerUsuariosPorCalleController("doctornavarro");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -78,9 +78,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>Carrer Doctor Navarro</h1>
     <button id="guardar" class="btn btn-success">Guardar canvis</button>
-    <?php if (!empty($usuariosantonioespolio)) : ?>
+    <?php if (!empty($usuariosdoctornavarro)) : ?>
         <div id="usuarios">
-            <?php foreach ($usuariosantonioespolio as $usuario): ?>
+            <?php foreach ($usuariosdoctornavarro as $usuario): ?>
                 <div class="usuario" data-id="<?= $usuario['id'] ?>">
                     <input type="text" name="numero" value="<?= htmlspecialchars($usuario['numero']) ?>">
                     <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>">
