@@ -50,6 +50,7 @@ if(!$_SESSION["validar"]) {
             "VALENCIA",
             "PLAÇA LA CREU",
             "DOCTOR NAVARRO",
+            "SAN ANTONIO",
             "D. EMILIO RAMÓN LLIN",
             "SANTA BÀRBERA"
         ];

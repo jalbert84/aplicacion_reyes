@@ -30,6 +30,7 @@ $calles = [
     "RAJOLARS",
     "REAL ACEQUIA DE MONCADA",
     "RAMON I CAJAL",
+    "SAN ANTONIO",
     "SANT BERTOMEU",
     "SANT DIDAC",
     "SANT VICENT",

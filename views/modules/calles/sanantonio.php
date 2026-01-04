@@ -7,7 +7,7 @@ if (!$_SESSION["validar"]) {
 require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/controllers/usuarios/user-controller.php");
 
 $usuariosController = new UsuariosController();
-$usuarioscavallers13647 = $usuariosController->obtenerUsuariosPorCalleController("cavallers13647");
+$usuariossanantonio = $usuariosController->obtenerUsuariosPorCalleController("sanantonio");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Carrer Cavallers (1-36/47)</title>
+    <title>Carrer Puntarró</title>
     <link href="/views/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -73,14 +73,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="botones">
         <a href="/../views/modules/usuarios/listar-usuarios.php" class="btn btn-primary">Tornar al llistat de carrers</a>
         <a href="/views/dashboard.php" class="btn btn-primary">Tornar al menú</a>
-        <a href="/../views/modules/mapas/mapa-azul.php" class="btn btn-primary">Mapa</a>
+        <a href="/../views/modules/mapas/mapa-rojo.php" class="btn btn-danger">Mapa</a>
     </div>
 
-    <h1>Carrer Cavaller (1-36/47)</h1>
+    <h1>Carrer Puntarró</h1>
     <button id="guardar" class="btn btn-success">Guardar canvis</button>
-    <?php if (!empty($usuarioscavallers13647)) : ?>
+    <?php if (!empty($usuariossanantonio)) : ?>
         <div id="usuarios">
-            <?php foreach ($usuarioscavallers13647 as $usuario): ?>
+            <?php foreach ($usuariossanantonio as $usuario): ?>
                 <div class="usuario" data-id="<?= $usuario['id'] ?>">
                     <input type="text" name="numero" value="<?= htmlspecialchars($usuario['numero']) ?>">
                     <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>">

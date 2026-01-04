@@ -10,7 +10,7 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/co
 $usuariosController = new UsuariosController();
 
 // Cambia estos nombres por todas las calles que quieras mostrar
-$calles = ["valencia", "plaza_la_creu", "doctor_navarro", "don_emilio_ramon_llin", "santa_barbera"];
+$calles = ["valencia", "plaza_la_creu", "doctor_navarro", "sanantonio", "don_emilio_ramon_llin", "santa_barbera"];
 
 $usuariosPorCalle = [];
 foreach ($calles as $calle) {
@@ -119,7 +119,9 @@ foreach ($usuariosPorCalle as $index => $datos) {
     const ordenesPorCalle = {
         "valencia_1": [2, 1, 4, 3, 6, 5, 7, 8, 10, 9, 11, 12, 13, 14],
         "plaza_la_creu_1": [5, 6, 7, 1, 2, 3, 4],
-        "doctor_navarro_1": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 7, 22, 9, 24, 11, 26, 13, 15, 28, 30, 32, 34, 36, 38, 17, 19, 42],
+        "doctor_navarro_1": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 7, 22, 9, 24, 11, 26, 13, 15, 28, 30, 32, 34, 36,],
+        "sanantonio_1": [11],
+        "doctor_navarro_2": [38, 17, 19, 42],
         "don_emilio_ramon_llin_1": [34, 51, 49, 32, 45, 43, 41, 39, 37, 35, 33, 31, 28, 29, 27, 26, 25, 24, 23, 22, 21, 19, 20, 18, 17, 15, 16, 13, 14, 11, 12, 10, 9, 7, 8, 5, 6, 3, 4, 1, 2],
         "santa_barbera_1": [47, 44, 45, 42, 43, 40, 38, 41, 39, 36, 37, 35, 33, 34, 31, 29, 28, 27, 26, 25, 24, 23, 21, 19, 18, 17, 15, 16, 13, 14, 11, 12, 9, 7, 10, 8, 5, 6, 4, 2]
     };

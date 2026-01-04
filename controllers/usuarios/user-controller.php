@@ -149,6 +149,7 @@ public function editarUsuarioDesdeVista($id, $nuevoNumero, $nuevoNombre, $nuevos
     'rajolars',
     'ramonicajal',
     'realacequiademoncada',
+    'sanantonio',
     'santabarbera',
     'santbertomeu',
     'santdidac',
