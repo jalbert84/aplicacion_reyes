@@ -10,13 +10,45 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/co
 $usuariosController = new UsuariosController();
 
 // Cambia estos nombres por todas las calles que quieras mostrar
-$calles = ["valencia", "plaza_la_creu", "doctor_navarro", "sanantonio", "don_emilio_ramon_llin", "santa_barbera"];
+
+$numerosPorTramo = [
+    'valencia_1' => [2, 1, 4, 3, 6, 5, 7, 8, 10, 9, 11, 12, 13, 14],
+    'plaza_la_creu_1' => [5, 6, 7, 1, 2, 3, 4],
+    'doctor_navarro_1' => [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 7, 22, 9, 24, 11, 26, 13, 15, 28, 30, 32, 34, 36,],
+    'sanantonio_1' => [11],
+    'doctor_navarro_2' => [38, 17, 40, 19, 42],
+    'don_emilio_ramon_llin_1' => [34, 51, 49, 32, 45, 43, 41, 39, 37, 35, 33, 31, 28, 29, 27, 26, 25, 24, 23, 22, 21, 19, 20, 18, 17, 15, 16, 13, 14, 11, 12, 10, 9, 7, 8, 5, 6, 3, 4, 1, 2],
+    'santa_barbera_1' => [47, 44, 45, 42, 43, 40, 38, 41, 39, 36, 37, 35, 33, 34, 31, 29, 28, 27, 26, 25, 24, 23, 21, 19, 18, 17, 15, 16, 13, 14, 11, 12, 9, 7, 10, 8, 5, 6, 4, 2]
+];
+
+$calles = ["valencia", "plaza_la_creu", "doctor_navarro", "sanantonio", "doctor_navarro", "don_emilio_ramon_llin", "santa_barbera"];
 
 $usuariosPorCalle = [];
+$repeticiones = [];
+
 foreach ($calles as $calle) {
+
+    if (!isset($repeticiones[$calle])) {
+        $repeticiones[$calle] = 1;
+    } else {
+        $repeticiones[$calle]++;
+    }
+
+    $claveTramo = $calle . '_' . $repeticiones[$calle];
+
+    $usuarios = $usuariosController->obtenerUsuariosPorCalleController($calle);
+
+    // Filtramos solo los usuarios que estén en la lista de números del tramo
+    if (isset($numerosPorTramo[$claveTramo])) {
+        $usuarios = array_filter($usuarios, function($u) use ($numerosPorTramo, $claveTramo) {
+            return in_array((int)$u['numero'], $numerosPorTramo[$claveTramo]);
+        });
+    }
+
     $usuariosPorCalle[] = [
         'nombre' => $calle,
-        'usuarios' => $usuariosController->obtenerUsuariosPorCalleController($calle)
+        'tramo' => $claveTramo,
+        'usuarios' => $usuarios
     ];
 }
 
@@ -114,50 +146,40 @@ foreach ($usuariosPorCalle as $index => $datos) {
 
 
 <script>
-    function ordenarTodasCalles() {
-    // Definimos el orden personalizado para cada calle
+function ordenarTodasCalles() {
+
     const ordenesPorCalle = {
-        "valencia_1": [2, 1, 4, 3, 6, 5, 7, 8, 10, 9, 11, 12, 13, 14],
-        "plaza_la_creu_1": [5, 6, 7, 1, 2, 3, 4],
-        "doctor_navarro_1": [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 7, 22, 9, 24, 11, 26, 13, 15, 28, 30, 32, 34, 36,],
-        "sanantonio_1": [11],
-        "doctor_navarro_2": [38, 17, 19, 42],
-        "don_emilio_ramon_llin_1": [34, 51, 49, 32, 45, 43, 41, 39, 37, 35, 33, 31, 28, 29, 27, 26, 25, 24, 23, 22, 21, 19, 20, 18, 17, 15, 16, 13, 14, 11, 12, 10, 9, 7, 8, 5, 6, 3, 4, 1, 2],
-        "santa_barbera_1": [47, 44, 45, 42, 43, 40, 38, 41, 39, 36, 37, 35, 33, 34, 31, 29, 28, 27, 26, 25, 24, 23, 21, 19, 18, 17, 15, 16, 13, 14, 11, 12, 9, 7, 10, 8, 5, 6, 4, 2]
+        "valencia_1": ["2","1","4","3","6","5","7","8","10","9","11","12","13","14"],
+        "plaza_la_creu_1": ["5","6","7","1","2","3","4"],
+        "doctor_navarro_1": ["1","2","4","6","8","10","12","14","16","18","20","7","22","9","24","11","26","13","15","28","30","32","34","36"],
+        "sanantonio_1": ["11"],
+        "doctor_navarro_2": ["38","17","40", "19","42"],
+        "don_emilio_ramon_llin_1": ["34","51","49","32","45","43","41","39","37","35","33","31","28","29","27","26","25","24","23","22","21","19","20","18","17","15","16","13","14","11","12","10","9","7","8","5","6","3","4","1","2"],
+        "santa_barbera_1": ["47","44","45","42","43","40","38","41","39","36","37","35","33","34","31","29","28","27","26","25","24","23","21","19","18","17","15","16","13","14","11","12","9","7","10","8","5","6","4","2"]
     };
 
-    const contenedores = document.querySelectorAll('.usuarios-llistat');
-
-    contenedores.forEach(container => {
+   document.querySelectorAll('.usuarios-llistat').forEach(container => {
         const calle = container.getAttribute('data-calle');
         const ordenPersonalizado = ordenesPorCalle[calle] || [];
 
-        const usuarios = Array.from(container.querySelectorAll('.usuario'))
-            .filter(u => u.style.display !== 'none');
-
+        const usuarios = Array.from(container.querySelectorAll('.usuario'));
         const mapaUsuarios = {};
+
         usuarios.forEach(usuario => {
-            const numeroTexto = usuario.querySelector('div.numero:nth-of-type(2)').textContent.trim();
-            const numero = parseInt(numeroTexto);
-            if (!mapaUsuarios[numero]) {
-                mapaUsuarios[numero] = [];
-            }
+            const numero = parseInt(usuario.querySelector('div.numero:nth-of-type(2)').textContent.trim());
+            if (!mapaUsuarios[numero]) mapaUsuarios[numero] = [];
             mapaUsuarios[numero].push(usuario);
         });
 
         container.innerHTML = '';
-
-        let pos = 1;
         ordenPersonalizado.forEach(numero => {
             if (mapaUsuarios[numero]) {
-                mapaUsuarios[numero].forEach(usuario => {
-                    const input = usuario.querySelector('div.numero input');
-                    container.appendChild(usuario);
-                });
+                mapaUsuarios[numero].forEach(usuario => container.appendChild(usuario));
             }
         });
     });
 }
 </script>
+
 </body>
 </html>

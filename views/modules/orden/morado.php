@@ -9,14 +9,48 @@ require_once("C:/Users/jorge/Documents/amics_reis/aplicacion/aplicacion_reyes/co
 
 $usuariosController = new UsuariosController();
 
-// Cambia estos nombres por todas las calles que quieras mostrar
+$numerosPorTramo = [
+    'blasco_ibanyez_1' => [10, 8, 6, 2],
+    'sant_vicent_1' => [78, 76, 74, 72, 70, 77, 75, 73, 68, 66, 64, 58],
+    'calvari' => [1, 2, 3, 4, 5, 7, 6, 8, 9, 11, 10, 13, 12, 17, 14, 15],
+    'sant_vicent_2' => [63, 56, 61, 54, 59, 57, 55, 53],
+    'cavallers_38_49_final_1' => [38, 49, 51, 40, 42, 53, 55, 57, 59, 61, 63, 65, 67, 46, 48, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99],
+    'sant_vicent_3' => [51, 52, 50, 49, 48, 46, 47, 44, 45, 42, 40, 43, 39, 38, 37, 36, 35, 34, 32, 30, 28, 26, 24],
+    'ausias_march_1' => [13, 11, 9, 7, 5, 6, 4, 3, 2],
+    'sant_vicent_4'=> [20, 18, 23, 21, 16, 19, 17, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 
+    'primer_de_maig_19_final_1'=> [19, 20, 21, 22, 34, 35, 36, 37, 38, 39, 40, 41, 42],
+    'cami_de_rafelbunyol_1'=> [8, 6]
+];
+
+
 $calles = ["blasco_ibanyez", "sant_vicent", "cavallers_38_49_final", "sant_vicent", "ausias_march", "sant_vicent", "primer_de_maig_19_final", "cami_de_rafelbunyol"];
 
 $usuariosPorCalle = [];
+$repeticiones = [];
+
 foreach ($calles as $calle) {
+
+    if (!isset($repeticiones[$calle])) {
+        $repeticiones[$calle] = 1;
+    } else {
+        $repeticiones[$calle]++;
+    }
+
+    $claveTramo = $calle . '_' . $repeticiones[$calle];
+
+    $usuarios = $usuariosController->obtenerUsuariosPorCalleController($calle);
+
+    // Filtramos solo los usuarios que estén en la lista de números del tramo
+    if (isset($numerosPorTramo[$claveTramo])) {
+        $usuarios = array_filter($usuarios, function($u) use ($numerosPorTramo, $claveTramo) {
+            return in_array((int)$u['numero'], $numerosPorTramo[$claveTramo]);
+        });
+    }
+
     $usuariosPorCalle[] = [
         'nombre' => $calle,
-        'usuarios' => $usuariosController->obtenerUsuariosPorCalleController($calle)
+        'tramo' => $claveTramo,
+        'usuarios' => $usuarios
     ];
 }
 
@@ -129,34 +163,23 @@ foreach ($usuariosPorCalle as $index => $datos) {
         "cami_de_rafelbunyol_1": [8, 6]
     };
 
-    const contenedores = document.querySelectorAll('.usuarios-llistat');
-
-    contenedores.forEach(container => {
+    document.querySelectorAll('.usuarios-llistat').forEach(container => {
         const calle = container.getAttribute('data-calle');
         const ordenPersonalizado = ordenesPorCalle[calle] || [];
 
-        const usuarios = Array.from(container.querySelectorAll('.usuario'))
-            .filter(u => u.style.display !== 'none');
-
+        const usuarios = Array.from(container.querySelectorAll('.usuario'));
         const mapaUsuarios = {};
+
         usuarios.forEach(usuario => {
-            const numeroTexto = usuario.querySelector('div.numero:nth-of-type(2)').textContent.trim();
-            const numero = parseInt(numeroTexto);
-            if (!mapaUsuarios[numero]) {
-                mapaUsuarios[numero] = [];
-            }
+            const numero = parseInt(usuario.querySelector('div.numero:nth-of-type(2)').textContent.trim());
+            if (!mapaUsuarios[numero]) mapaUsuarios[numero] = [];
             mapaUsuarios[numero].push(usuario);
         });
 
         container.innerHTML = '';
-
-        let pos = 1;
         ordenPersonalizado.forEach(numero => {
             if (mapaUsuarios[numero]) {
-                mapaUsuarios[numero].forEach(usuario => {
-                    const input = usuario.querySelector('div.numero input');
-                    container.appendChild(usuario);
-                });
+                mapaUsuarios[numero].forEach(usuario => container.appendChild(usuario));
             }
         });
     });
